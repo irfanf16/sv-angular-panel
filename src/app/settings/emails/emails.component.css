@@ -1,0 +1,630 @@
+
+
+#offcanvasRight, #emailPreview{
+  width: calc(100% - 50%);
+}
+.submit-btn {
+  background: #35A476;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  padding: 9px 40px;
+}
+
+.text-danger{
+  width: fit-content;
+  background: red;
+  color: white !important;
+  padding: 0px 5px 2px 5px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  position: absolute;
+  right: 19px;
+  top: 50px;
+}
+.m-x .text-danger{
+  right: 4px !important;
+  top: 27px !important;
+}
+
+.valid-input {
+  border-color: #dee2e6;
+}
+
+/* Styles for invalid input */
+.invalid-input {
+  border-color: red;
+}
+
+.emb .text-danger{
+  top: 105px;
+}
+
+.config-row{
+  background: #DBEDE6;
+  padding: 12px;
+  border-radius: 5px;
+  margin: 20px auto 20px;
+}
+.config-row .form-group{
+  background: white;
+  border-radius: 4px;
+  padding: 7px 10px;
+}
+.config-row input{
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+}
+.config-row input:focus{
+  box-shadow: none;
+}
+.config-row .imp-exp-btn{
+  padding: 0;
+  background: transparent;
+  border: none;
+  margin-right: 20px;
+}
+.config-row .imp-exp-btn svg path{
+  fill: #35A476;
+}
+.config-row .filter-btn{
+  background: white;
+  border: none;
+  padding: 0px 8px 5px;
+  border-radius: 5px;
+  position: relative;
+}
+.config-row .filter-btn .count{
+  position: absolute;;
+  top: -5px;
+  right: -5px;
+  background: #35A476;
+  color: white;
+  font-size: 7px;
+  border-radius: 1000px;
+  border: 1px solid white;
+  padding: 0px 3px;
+}
+.config-row .filter-btn svg path{
+  fill: #35A476;
+}
+.list-table{
+  border: 1px solid #E4E5E7;
+  border-radius: 5px;
+}
+.list-table table{
+  width: 100%;
+}
+.list-table table tbody{
+  position: relative;
+  vertical-align: middle;
+}
+.list-table table tr{
+  border-bottom: 1px solid #E4E5E7;
+}
+.list-table table tr th{
+  background: #DBEDE6;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.list-table table tr th:first-child{
+  border-top-left-radius: 4px;
+}
+.list-table table tr th:last-child{
+  border-top-right-radius: 4px;
+  width: 120px;
+}
+.list-table table tr td{
+  padding: 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.list-table table tr:last-child td:first-child {
+  border-bottom-left-radius: 4px;
+}
+.list-table table tr:last-child td:last-child {
+  border-bottom-right-radius: 4px;
+}
+.list-table table .count{
+  font-size: 12px;
+  color: white;
+  background: #35A476;
+  padding: 3px 15px;
+  border-radius: 5px;
+  width: max-content;
+  margin: 0 auto;
+}
+.list-table table .desc-btn{
+  background: none;
+  padding: 0 0 0 4px;
+  border: none;
+}
+.list-table table .desc-btn:focus{
+  box-shadow: none;
+}
+.list-table table .desc-btn svg{
+  width: 20px;
+  height: 25px;
+}
+.list-table table .desc-btn svg path{
+  fill: #35A476;
+}
+
+.list-table table .action-btn {
+  border: none;
+  background: transparent;
+}
+
+.list-table table .action-btn:focus {
+  box-shadow: none;
+}
+
+.list-table table td {
+  position: relative;
+}
+
+.list-table table .dropdown-menu{
+  padding: 0;
+  width: 120px;
+  left: -90px !important;
+  top: 5px !important;
+  min-width: max-content;
+  height: max-content;
+}
+.list-table table .dropdown-menu::before,
+.list-table table .dropdown-menu::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  z-index: 10;
+}
+
+.list-table table .dropdown-menu::before {
+  right: -9px;
+  border-left: 8px solid lightgray;
+}
+.list-table table .dropdown-menu::after {
+  right: -7px;
+  border-left: 7px solid white;
+}
+
+.list-table table .dropdown ul {
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  transform: none!important;
+}
+
+.list-table table .dropdown ul button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.list-table table .dropdown ul button:hover {
+  background: #DBEDE6;
+}
+
+.list-table table .dropdown ul button img {
+  width: 13px;
+  margin-right: 3px;
+  font-size: 15px;
+}
+
+#deletePopup .modal-dialog{
+  position: absolute;
+  margin:0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%)!important;
+  width: 100%;
+}
+#deletePopup p{
+  margin-bottom: 30px;
+}
+#deletePopup button{
+  font-size: 14px;
+}
+#deletePopup .close-btn{
+  border: 1px solid black;
+  margin-right: 10px;
+}
+#deletePopup .delete-btn{
+  background: #35A476;
+  color: white;
+}
+
+   /* EMAIL CSS STARTED */
+   /* What it does: Remove spaces around the email design added by some email clients. */
+   /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+ .emailPreview html,
+ .emailPreview body {
+   margin: 0 auto !important;
+   padding: 0 !important;
+   height: 100% !important;
+   width: 100% !important;
+   background: #f1f1f1;
+ }
+
+/* What it does: Stops email clients resizing small text. */
+* {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* What it does: Centers email on Android 4.4 */
+.emailPreview  div[style*="margin: 16px 0"] {
+  margin: 0 !important;
+}
+
+/* What it does: Stops Outlook from adding extra spacing to tables. */
+.emailPreview table,
+.emailPreview td {
+  mso-table-lspace: 0pt !important;
+  mso-table-rspace: 0pt !important;
+}
+
+/* What it does: Fixes webkit padding issue. */
+.emailPreview table {
+  border-spacing: 0 !important;
+  border-collapse: collapse !important;
+  table-layout: fixed !important;
+  margin: 0 auto !important;
+}
+
+/* What it does: Uses a better rendering method when resizing images in IE. */
+.emailPreview img {
+  -ms-interpolation-mode: bicubic;
+}
+
+/* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+.emailPreview a {
+  text-decoration: none;
+}
+
+/* What it does: A work-around for email clients meddling in triggered links. */
+.emailPreview *[x-apple-data-detectors],
+  /* iOS */
+.emailPreview .unstyle-auto-detected-links *,
+.emailPreview .aBn {
+  border-bottom: 0 !important;
+  cursor: default !important;
+  color: inherit !important;
+  text-decoration: none !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+}
+
+/* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+.emailPreview .a6S {
+  display: none !important;
+  opacity: 0.01 !important;
+}
+
+/* What it does: Prevents Gmail from changing the text color in conversation threads. */
+.emailPreview .im {
+  color: inherit !important;
+}
+
+/* If the above doesn't work, add a .g-img class to any image in question. */
+.emailPreview img.g-img+div {
+  display: none !important;
+}
+
+/* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+/* Create one of these media queries for each additional viewport size you'd like to fix */
+
+/* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+@media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+  .emailPreview  u~div .email-container {
+    min-width: 320px !important;
+  }
+}
+
+/* iPhone 6, 6S, 7, 8, and X */
+@media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+  .emailPreview u~div .email-container {
+    min-width: 375px !important;
+  }
+}
+
+/* iPhone 6+, 7+, and 8+ */
+@media only screen and (min-device-width: 414px) {
+  .emailPreview u~div .email-container {
+    min-width: 414px !important;
+  }
+}
+
+
+.emailPreview .primary {
+  background: #17bebb;
+}
+
+.emailPreview .bg_white {
+  background: #F0F0F0;
+}
+
+.emailPreview .bg_light {
+  background: #f7fafa;
+}
+
+.emailPreview .bg_black {
+  background: #000000;
+}
+
+.emailPreview .bg_dark {
+  background: rgba(0, 0, 0, .8);
+}
+
+.emailPreview .email-section {
+  padding: 2.5em;
+}
+
+/*BUTTON*/
+.emailPreview .btn {
+  padding: 10px 15px;
+  display: inline-block;
+}
+
+.emailPreview .btn.btn-primary {
+  border-radius: 5px;
+  background: #17bebb;
+  color: #ffffff;
+}
+
+.emailPreview .btn.btn-white {
+  border-radius: 5px;
+  background: #ffffff;
+  color: #000000;
+}
+
+.emailPreview .btn.btn-white-outline {
+  border-radius: 5px;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.emailPreview .btn.btn-black-outline {
+  border-radius: 0px;
+  background: transparent;
+  border: 2px solid #000;
+  color: #000;
+  font-weight: 700;
+}
+
+.emailPreview .btn-custom {
+  color: rgba(0, 0, 0, .3);
+  text-decoration: underline;
+}
+
+.emailPreview h1,
+.emailPreview h2,
+.emailPreview h3,
+.emailPreview h4,
+.emailPreview h5,
+.emailPreview h6 {
+  font-family: 'Roboto';
+  color: #000000;
+  margin-top: 0;
+  font-weight: 400;
+}
+
+.emailPreview body {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, .4);
+}
+
+.emailPreview a {
+  color: #17bebb;
+}
+
+/*LOGO*/
+.emailPreview .logo {
+  padding-top: 15px;
+  background: url('../../../assets/css/emailImages/logo-header.png') no-repeat center/cover;
+  padding-bottom: 15px;
+}
+
+.emailPreview .logo h1 {
+  margin: 0;
+}
+
+.emailPreview .logo h1 a {
+  color: #17bebb;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'Roboto';
+}
+
+/*HERO*/
+.emailPreview .hero {
+  position: relative;
+  z-index: 0;
+}
+
+.emailPreview .hero .text {
+  color: rgba(0, 0, 0, .3);
+}
+
+.emailPreview .hero .text h2 {
+  color: #000;
+  font-size: 34px;
+  margin-bottom: 0;
+  font-weight: 200;
+  line-height: 1.4;
+}
+
+.emailPreview .hero .text h3 {
+  font-size: 24px;
+  font-weight: 300;
+  padding: 0;
+  margin: 0;
+}
+
+.emailPreview .hero .text h2 span {
+  font-weight: 650;
+  color: #000;
+}
+
+.emailPreview .text-author {
+  bordeR: 1px solid rgba(0, 0, 0, .05);
+  max-width: 50%;
+  margin: 0 auto;
+  padding: 2em;
+}
+
+.emailPreview .text-author img {
+  border-radius: 50%;
+  padding-bottom: 20px;
+}
+
+.emailPreview .text-author h3 {
+  margin-bottom: 0;
+}
+
+.emailPreview ul.social {
+  padding: 0;
+}
+
+.emailPreview ul.social li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/*FOOTER*/
+
+.emailPreview .footer {
+  border-top: 1px solid rgba(0, 0, 0, .05);
+  color: rgba(0, 0, 0, .5);
+}
+
+.emailPreview .footer .heading {
+  color: #000;
+  font-size: 20px;
+}
+
+.emailPreview .footer ul {
+  margin: 0;
+  padding: 0;
+}
+
+.emailPreview .footer ul li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.emailPreview .footer ul li a {
+  color: rgba(0, 0, 0, 1);
+}
+.emailPreview .custom_link{
+  font-family: Poppins, Arial, sans-serif;
+  font-size: 21px; font-weight: 700;
+  line-height: 24px;
+  background: linear-gradient(84.09deg, #AF1FA5 0.75%, #22729F 31.09%, #062564 52.96%, #022560 99.67%); color: #ffffff;
+  padding: 12px 35px;
+  border-radius: 100px;
+  text-decoration: none!important;
+  min-width: 235px;
+  display:inline-block;
+}
+
+.emailPreview ol.custom-counter {
+  counter-reset: item;
+  list-style-type: none;
+  padding-left: 5px;
+  text-align: left;
+}
+.emailPreview ol.custom-counter li {
+  counter-increment: item;
+  margin-bottom: 0.5em;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 31px;
+  color: #333333;
+}
+.emailPreview ol.custom-counter li::before {
+  content: counter(item) ". ";
+  margin-right: 0.5em;
+  width: 30px;
+  display: inline-block;
+  text-align: center;
+}
+
+.config-col .dropdown-menu
+{
+  margin: 9px 0 0 2px !important;
+}
+.config-col .dropdown-menu:before {
+  top: -11px !important;
+  transform: rotate(-90deg) !important;
+  left: 102px !important;
+}
+ul li:hover {
+  background: #dbede6;
+}
+ul li {
+  padding: 3px 3px 3px 6px;
+  font-size: 12px;
+}
+.selected{
+  background: #dbede6;
+}
+.selectedFilter{
+  top: 2px;
+  right: 0;
+  background: red;
+  border-radius: 50%;
+  font-size: 12px;
+  padding: 3px;
+  position: absolute;
+}
+
+@media screen and (max-width: 500px) {}
+
+.emailPreview .bg_white_w {
+  background-color: #FFFFFF;
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-in-out;
+  display: block;
+}
+
+.slide-out {
+  animation: slideOut 0.5s ease-in-out;
+  display:none ;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+  from { transform: translateX(0); }
+  to {
+    transform: translateX(-100%);
+    display: none;
+  }
+}

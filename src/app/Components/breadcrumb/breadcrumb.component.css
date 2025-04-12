@@ -1,0 +1,25 @@
+.breadcrumb .breadcrumb-item a{
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+.unique_font_size{
+  font-size: 24px;
+  font-weight: 600;
+}
+nav{
+  position: absolute;
+  margin-top: -10px;
+}
+nav a{
+  color: #333333;
+  text-decoration: none;
+  list-style: none;
+}
+nav li.active a{
+  color: #35A476;
+  text-decoration: underline;
+}
+.c-icon-m{
+  margin: 7px 9px auto -22px;
+}

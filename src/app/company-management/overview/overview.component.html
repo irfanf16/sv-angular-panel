@@ -1,0 +1,540 @@
+<div class="row">
+  <div class="col-md-6 col-5 float-start overview_padding">
+    <span class="overview_title"><b>Overview</b></span>
+  </div>
+  <div class="col-md-6 col-7 float-end mb-2">
+    <!-- <button class="btn btn-primary add_company_btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <img class="" ngSrc="assets/css/sprite_images/plus.svg" width="10" height="10" priority/> Add Company OLD POPUP
+    </button> -->
+    @if(checkPermission(moduleIds.company_management, 'create')){
+      <button class="btn btn-primary add_company_btn" data-bs-toggle="offcanvas" data-bs-target="#exampleModal"
+              aria-controls="offcanvasRight">
+        <img class="" ngSrc="assets/css/sprite_images/plus.svg" width="10" height="10" priority/> Add Company
+      </button>
+    }
+
+
+  </div>
+</div>
+<div class="row">
+  <app-spinner-component *ngIf="showSpinner"></app-spinner-component>
+  <div class="col-lg-2 col-md-4 col-6 pt-lg-0 pb-3">
+    <div class="d-flex justify-content-sm-evenly active_companies">
+      <div class="d-flex align-items-center">
+        <img class="" ngSrc="assets/css/sprite_images/activeCompanies.svg" width="40" height="40" priority/>
+      </div>
+      <div>
+        <h6 class="unique_font_size box-stat-title">Active Companies</h6>
+        <h4 class="box-stat-count">{{activeCompaniesLength}}</h4>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-lg-2 col-md-4 col-6 pt-lg-0 pb-3">
+    <div class="d-flex justify-content-sm-evenly on_trail_companies">
+      <div class="d-flex align-items-center">
+        <img class="" ngSrc="assets/css/sprite_images/onTrailCompanies.svg" width="40" height="40" priority/>
+      </div>
+      <div>
+        <h6 class="unique_font_size box-stat-title">On Trail Companies</h6>
+        <h4 class="box-stat-count">0</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-2 col-md-4 col-6 pt-lg-0 pb-3">
+    <div class="d-flex justify-content-sm-evenly basic_companies">
+      <div class="d-flex align-items-center">
+        <img class="" ngSrc="assets/css/sprite_images/basicCompanies.svg" width="40" height="40" priority/>
+      </div>
+      <div>
+        <h6 class="unique_font_size box-stat-title">Basic Companies</h6>
+        <h4 class="box-stat-count">0</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-2 col-md-4 col-6 pt-md-0 pb-3">
+    <div class="d-flex justify-content-sm-evenly standard_companies">
+      <div class="d-flex align-items-center">
+        <img class="" ngSrc="assets/css/sprite_images/standardCompanies.svg" width="40" height="40" priority/>
+      </div>
+      <div>
+        <h6 class="unique_font_size box-stat-title">Standard Companies</h6>
+        <h4 class="box-stat-count">0</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-2 col-md-4 col-6 pt-md-0 pb-3">
+    <div class="d-flex justify-content-sm-evenly professional_companies">
+      <div class="d-flex align-items-center p_l">
+        <img class="" ngSrc="assets/css/sprite_images/professionalCompanies.svg" width="40" height="40" priority/>
+      </div>
+      <div>
+        <h6 class="unique_font_size box-stat-title">Professional Companies</h6>
+        <h4 class="box-stat-count">0</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-2 col-md-4 col-6 pt-md-0 pb-3">
+    <div class="d-flex justify-content-sm-evenly enterprize_companies">
+      <div class="d-flex align-items-center p_l">
+        <img class="plus_icon" ngSrc="assets/css/sprite_images/enterpriseCompanies.svg" width="40" height="40"
+             priority/>
+      </div>
+      <div>
+        <h6 class="unique_font_size box-stat-title">Enterprise Companies</h6>
+        <h4 class="box-stat-count">0</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-2">
+
+  <div class="col-md-6 mb-md-0 mb-3 ">
+
+    <div class="bart_chart_section position-relative">
+
+      <div class="p-2">
+        <div class="d-inline p-3">
+          <div class="col-md-6 float-start overview_padding">
+            <span><b>Top Companies (Users)</b></span>
+          </div>
+          <div class="col-md-6 float-end">
+            <div class="w-100 d-flex justify-content-end">
+              <a href="#" class="view_all">
+                View All
+              </a>
+            </div>
+
+          </div>
+        </div>
+        <div>
+
+        </div>
+      </div>
+      <div class="w-100">
+        <canvas id="myChart" width="100" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="bart_chart_section p-2 h-100">
+      <div class="row">
+        <div class="d-inline p-3">
+          <div class="col-md-6 float-start overview_padding">
+            <span><b>Top Companies (Revenue)</b></span>
+          </div>
+          <div class="col-md-6 float-end">
+            <div class="w-100 d-flex justify-content-end">
+              <a href="#" class="view_all">
+                View All
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="main-inner-project-box">
+          <div class="chart-box">
+            <canvas id="myChart1" width="250" height="250"></canvas>
+          </div>
+          <div class="progressbb w-100">
+            <div id="complete_days_percentage" class="complete_days_percentage">
+              <div class="chart-bar mt-2 mb-2">
+                <div class="chart-bar-label">
+                    <span class="float-left company_title">
+<!--                      Company 1-->
+                    </span>
+                  <span class="amount_right"
+                        id="first_app1">$0</span>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar"
+                       style="width: 100%; background: #35A476;" aria-valuenow="100"
+                       aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="chart-bar mt-2 mb-2">
+                <div class="chart-bar-label">
+                    <span class="float-left company_title">
+<!--                      Company 2-->
+                    </span>
+                  <span class="amount_right"
+                        id="first_app2">$0</span>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar"
+                       style="width: 100%; background: #626866;" aria-valuenow="100"
+                       aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="chart-bar mt-2 mb-2">
+                <div class="chart-bar-label">
+                    <span class="float-left company_title">
+<!--                      Company 3-->
+                    </span>
+                  <span class="amount_right"
+                        id="first_app3">$0</span>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar"
+                       style="width: 100%; background: #E77D04;" aria-valuenow="100"
+                       aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<!--  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <button type="button" class="btn-close create-company-close position-absolute" id="close-create-company" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+                <div class="upper-content text-center">
+                    <img ngSrc="assets/css/sprite_images/images/Group.png" width="100" height="100" class="main-img" alt="Invite">
+                    <h6>Your Path to Success Begins Here</h6>
+                    <p>Join us in shaping the future. Explore our services and let's embark on this exciting
+                        journey.</p>
+                </div>
+                <form action="" class="invite-form" [formGroup]="createCompanyForm" (ngSubmit)="createCompanyFormData()">
+                    <div class="form-group">
+                        <label for="formation_type">Company Formation Type<span class="red">*</span></label>
+                        <select class="form-control" id="formation_type" formControlName="formation_type">
+                            <option value="direct">Form Directly</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="owner_email" class="form-label">Email<span class="text-danger">*</span></label>
+                        <input type="email" formControlName="owner_email" id="owner_email" class="form-control" aria-describedby="emailHelp">
+
+                        <div *ngIf="showErrors && formControl['owner_email'].errors" class="text-danger">
+                          <div *ngIf="formControl['owner_email'].errors['email']">Email must be valid.</div>
+                          <div *ngIf="formControl['owner_email'].errors['required']">Email is required.</div>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="company_title" class="form-label">Company Name<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="company_title" id="company_title" placeholder="Company Name" class="form-control" aria-describedby="emailHelp">
+
+                        <div *ngIf="showErrors && formControl['company_title'].errors" class="text-danger">
+                          <div *ngIf="formControl['company_title'].errors['valid']">Company Name must be valid.</div>
+                          <div *ngIf="formControl['company_title'].errors['required']">Company Name is required.</div>
+                          <div *ngIf="formControl['company_title'].errors['minlength']">Company Name length should be greater than 2 characters.</div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="owner_name" class="form-label">Owner Name<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="owner_name" id="owner_name" class="form-control" aria-describedby="emailHelp">
+                        <div *ngIf="showErrors && formControl['owner_name'].errors" class="text-danger">
+                          <div *ngIf="formControl['owner_name'].errors['valid']">Owner Name must be valid.</div>
+                          <div *ngIf="formControl['owner_name'].errors['required']">Owner Name is required.</div>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+
+                        <label class="form-label" for="plan_id">Select Package<span class="text-danger">*</span></label>
+                        <select class="form-select" id="plan_id" aria-label="Default select example" formControlName="plan_id">
+                          <option value="" >Select Package</option>
+                          <option value="0" selected>Custom Package</option>
+                        </select>
+
+                        <div *ngIf="showErrors && formControl['plan_id'].errors" class="text-danger">
+                          <div *ngIf="formControl['plan_id'].errors['required']">Package is required.</div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" cols="30" rows="2" formControlName="message" placeholder="Type Here.."></textarea>
+                    </div>
+                    <div class="submit-btn">
+                        <input type="submit" [attr.disabled]="inviteOwnerButtonDisable ? true: null" value="Create Company" />
+                        <!-- <p *ngIf="inviteOwnerModel">Company created successfully.</p>
+                        <p *ngIf="!ownerHasInvited && inviteOwnerModel">We are sending invitation email to the user. Please wait.......</p>
+                        <p *ngIf="ownerHasInvited" >Owner Invitation Email has been sent.</p>
+                        <button *ngIf="ownerHasInvited" type="button" class="invite-owner-btn" (click)="resetCreateCompanyForm()">Rest Form</button> -->
+<!--                  </div>
+              </form>
+
+          </div>
+      </div>
+  </div>
+</div> -->
+<!-- Modal -->
+
+<!-- Add/Edit Feature Popup -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="exampleModal" aria-labelledby="offcanvasRightLabel"
+     #AddEditPopup>
+  <app-spinner-component *ngIf="showCompanySpinner"></app-spinner-component>
+  <!--    <app-spinner-component ></app-spinner-component>-->
+  <div class="offcanvas-header justify-content-end">
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <div class="upper-content text-center d-none">
+      <img ngSrc="assets/css/sprite_images/images/Group.png" width="100" height="100" class="main-img" alt="Invite">
+      <h6>Your Path to Success Begins Here</h6>
+      <p>Join us in shaping the future. Explore our services and let's embark on this exciting
+        journey.</p>
+    </div>
+  </div>
+  <div class="offcanvas-body slide-container d-flex align-items-center">
+    <div class="forma_block" [ngClass]="{'slide-in': !showCompanyForm, 'slide-out': showCompanyForm}">
+      <div class="upper-content text-center w-100">
+        <img ngSrc="assets/css/sprite_images/images/Group.png" width="100" height="100" class="main-img" alt="Invite">
+        <h6>Invitation to Form Company</h6>
+        <p>Please select the company formation tiype</p>
+      </div>
+      <div>
+        <div class="col-md-12 text-center">
+          <label class="required forma mb-1">Company Formation Type</label>
+        </div>
+        <div class="d-flex justify-content-center">
+          <select class="form-select forma_type" aria-label="Default select example"
+                  (change)="controlFormationType($event)">
+            <option  selected disabled hidden="hidden" value="">Select</option>
+            <option value="direct">Form Directly</option>
+            <option value="invitation">Form by Invitation type</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+    <div class="w-100">
+
+      <form action="" class="invite-form " [formGroup]="createCompanyForm" (ngSubmit)="createCompanyFormData()" [ngClass]="{'slide-in': showCompanyForm, 'slide-out': !showCompanyForm}">
+        <div class="upper-content text-center w-100">
+          <img ngSrc="assets/css/sprite_images/images/Group.png" width="100" height="100" class="main-img" alt="Invite">
+        </div>
+        <div class="form-group">
+          <label for="formation_type">Company Formation Type<span class="red">*</span></label>
+          <select class="form-control" id="formation_type" formControlName="formation_type"  (change)="controlFormationTypeInside($event)">
+            <option value="direct" >Form Directly</option>
+            <option value="invitation" >Form by Invitation type</option>
+          </select>
+        </div>
+        <div class="form-group">
+
+          <label for="owner_email" class="form-label">Email<span class="text-danger">*</span></label>
+          <input type="email" formControlName="owner_email" id="owner_email" class="form-control"
+                 aria-describedby="emailHelp">
+
+          <div *ngIf="showErrors && formControl['owner_email'].errors" class="text-danger">
+            <div *ngIf="formControl['owner_email'].errors?.['email']">Email must be valid.</div>
+            <div *ngIf="formControl['owner_email'].errors?.['required']">Email is required.</div>
+          </div>
+
+
+        </div>
+        <div class="form-group">
+
+          <label for="company_title" class="form-label">Company Name<span class="text-danger">*</span></label>
+          <input type="text" formControlName="company_title" id="company_title" placeholder="Company Name" class="form-control" aria-describedby="emailHelp">
+
+          <div *ngIf="showErrors && formControl['company_title'].errors" class="text-danger">
+            <div *ngIf="formControl['company_title'].errors?.['valid']">Company Name must be valid.</div>
+            <div *ngIf="formControl['company_title'].errors?.['required']">Company Name is required.</div>
+            <div *ngIf="formControl['company_title'].errors?.['minlength']">Company Name length should be greater than 2 characters.</div>
+          </div>
+
+        </div>
+<!--        @if(hideInvitationFieldsInFormation){-->
+
+        <div class="form-group">
+
+          <label for="owner_name" class="form-label">Owner Name<span class="text-danger">*</span></label>
+          <input type="text" formControlName="owner_name" id="owner_name" class="form-control"
+                 aria-describedby="emailHelp">
+          <div *ngIf="showErrors && formControl['owner_name'].errors" class="text-danger">
+            <div *ngIf="formControl['owner_name'].errors?.['valid']">Owner Name must be valid.</div>
+            <div *ngIf="formControl['owner_name'].errors?.['required']">Owner Name is required.</div>
+          </div>
+
+
+        </div>
+<!--        }-->
+<!--        <div class="form-group">-->
+
+<!--          <label class="form-label" for="categories">Select Package<span class="text-danger">*</span></label>-->
+<!--          <select class="form-select" id="categories" aria-label="Default select example" formControlName="categories">-->
+<!--            <option value="" hidden="hidden" disabled selected>Select Package</option>-->
+<!--&lt;!&ndash;            <ng-container *ngFor="let plan of companyPlans; let i = index;">&ndash;&gt;-->
+<!--&lt;!&ndash;              <option value="{{plan.product.id}}" >{{plan.product.name}}</option>&ndash;&gt;-->
+<!--&lt;!&ndash;            </ng-container>&ndash;&gt;-->
+
+<!--          </select>-->
+
+<!--          <div *ngIf="showErrors && formControl['plan_id'].errors" class="text-danger">-->
+<!--            <div *ngIf="formControl['plan_id'].errors['required']">Category is required.</div>-->
+<!--          </div>-->
+
+<!--        </div>-->
+
+        <div class="form-group">
+
+          <label class="form-label" for="plan_id">Select Package<span class="text-danger">*</span></label>
+          <select class="form-select" id="plan_id" aria-label="Default select example" formControlName="plan_id" (change)="controlPackageSelection($event)">
+            <option value="" hidden="hidden" disabled selected>Select Package</option>
+            <ng-container *ngFor="let plan of companyPlans; let i = index;">
+              <option value="{{plan.product.id}}" >{{plan.product.name}}</option>
+            </ng-container>
+
+          </select>
+
+          <div *ngIf="showErrors && formControl['plan_id'].errors" class="text-danger">
+            <div *ngIf="formControl['plan_id'].errors?.['required']">Package is required.</div>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <label class="form-label" for="price_id">Select Plan's Price<span class="text-danger">*</span></label>
+          <select class="form-select" id="price_id" aria-label="Default select example" formControlName="price_id" >
+            <option value="" hidden="hidden" disabled selected>Select Plan Frequency</option>
+            <ng-container *ngFor="let price of planFrequencyPrices; let i = index;">
+              <option value="{{price.id}}" >{{price.title}}</option>
+            </ng-container>
+
+          </select>
+
+          <div *ngIf="showErrors && formControl['plan_id'].errors" class="text-danger">
+            <div *ngIf="formControl['plan_id'].errors?.['required']">Package is required.</div>
+          </div>
+
+        </div>
+        <div class="form-group">
+
+          <label class="form-label" for="price_id">Company Advocate</label>
+          <select class="form-select" id="advocate_id" aria-label="Default select example" formControlName="advocate_id" >
+            <option value="" hidden="hidden" disabled selected>Select User</option>
+            <ng-container *ngFor="let user of users; let i = index;">
+              <option value="{{user.id}}" >{{user.first_name +' '+user.last_name}}</option>
+            </ng-container>
+
+          </select>
+
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea class="form-control" id="message" cols="30" rows="2" formControlName="message"
+                    placeholder="Type Here.." style="font-weight: 500;font-family: var(--bs-body-font-family) !important;"></textarea>
+        </div>
+        <div class="submit-btn">
+          <input type="submit" [attr.disabled]="inviteOwnerButtonDisable ? true: null" value="Create Company"/>
+          <!-- <p *ngIf="inviteOwnerModel">Company created successfully.</p>
+          <p *ngIf="!ownerHasInvited && inviteOwnerModel">We are sending invitation email to the user. Please wait.......</p>
+          <p *ngIf="ownerHasInvited" >Owner Invitation Email has been sent.</p>
+          <button *ngIf="ownerHasInvited" type="button" class="invite-owner-btn" (click)="resetCreateCompanyForm()">Rest Form</button> -->
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+<!-- Add/Edit Feature Popup -->
+
+<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content add_company_form_max_width">
+      <button type="button" class="btn-close create-company-close position-absolute" id="close-create-company" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 d-flex justify-content-center">
+            <img class="w-100" ngSrc="assets/css/sprite_images/companyCreation.svg" width="100" height="100" priority/>
+          </div>
+
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12 text-center cre_company_initial_text">
+            <span>Your Path to Success Begins Here</span>
+          </div>
+          <div class="col-md-12 text-center">
+
+            <span>Join us in shaping the future. Explore our services and let's embark on this exciting journey.</span>
+          </div>
+
+        </div>
+
+        <div class="row mt-3 ">
+          <div class="col-md-12">
+            <form  class="w-100" [formGroup]="createCompanyForm" (ngSubmit)="createCompanyFormData()" >
+              <div class="mb-3 position-relative add_company_fields_padding" >
+                  <label for="company_title" class="form-label">Company Title<span class="text-danger">*</span></label>
+                  <input type="text" formControlName="company_title" id="company_title" class="form-control" aria-describedby="emailHelp">
+
+                  <div *ngIf="formControl['company_title'].errors" class="text-danger">
+                    <div *ngIf="formControl['company_title'].errors['valid']">Company Title must be valid.</div>
+                    <div *ngIf="formControl['company_title'].errors['required']">Company Title is required.</div>
+                  </div>
+
+                  <label for="owner_name" class="form-label">Owner Name<span class="text-danger">*</span></label>
+                  <input type="text" formControlName="owner_name" id="owner_name" class="form-control" aria-describedby="emailHelp">
+                  <div *ngIf="formControl['owner_name'].errors" class="text-danger">
+                    <div *ngIf="formControl['owner_name'].errors['valid']">Owner Name must be valid.</div>
+                    <div *ngIf="formControl['owner_name'].errors['required']">Owner Name is required.</div>
+                  </div>
+
+                  <label for="owner_email" class="form-label">Owner Email<span class="text-danger">*</span></label>
+                  <input type="email" formControlName="owner_email" id="owner_email" class="form-control" aria-describedby="emailHelp">
+
+                  <div *ngIf="formControl['owner_email'].errors" class="text-danger">
+                    <div *ngIf="formControl['owner_email'].errors['email']">Owner Email must be valid.</div>
+                    <div *ngIf="formControl['owner_email'].errors['required']">Owner Email is required.</div>
+                  </div>
+              </div>
+
+
+
+              <div class="position-relative password_input add_company_fields_padding" >
+                <label class="form-label">Select Package<span class="text-danger">*</span></label>
+                <select class="form-select" aria-label="Default select example" formControlName="plan_id">
+                  <option value="" >Select Package</option>
+                  <option value="0" selected>Custom Package</option>
+                </select>
+
+                <div *ngIf="formControl['plan_id'].errors" class="text-danger">
+                  <div *ngIf="formControl['plan_id'].errors['required']">Package is required.</div>
+                </div>
+
+              </div>
+              <div class="mt-4 add_company_fields_padding">
+                <button type="submit" class="btn btn-primary w-100" [attr.disabled]="inviteOwnerButtonDisable ? true: null">Create Company</button>
+                <p *ngIf="inviteOwnerModel">Compay created successfully.</p>
+              </div>
+
+            </form>
+
+            <div *ngIf="inviteOwnerModel" class="mt-4 add_company_fields_padding">
+
+              <button type="button" class="btn btn-primary w-100" [attr.disabled]="inviteOwnerButton ? true: null" (click)="inviteOwner(this.createCompanyResult.company.id)">Invite Owner</button>
+              <p *ngIf="ownerHasInvited">Owner has invited successfully.</p>
+              <button *ngIf="ownerHasInvited" type="button" class="btn btn-primary w-100" (click)="resetCreateCompanyForm()">Rest Form</button>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div> -->

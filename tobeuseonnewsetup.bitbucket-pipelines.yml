@@ -1,0 +1,56 @@
+image: atlassian/default-image:2
+
+pipelines:
+  branches:
+    dev:
+      - step:
+          name: Build and Push to ECR
+          script:
+            - apt-get update
+            - apt-get install -y awscli
+
+            - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_ECR
+            - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_ECR
+            - export AWS_DEFAULT_REGION=us-east-2
+            - export ECR_REPOSITORY=820229096731.dkr.ecr.us-east-2.amazonaws.com/staffviz
+
+            # Authenticate with ECR
+            - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REPOSITORY
+            - BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+            - BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's/\//-/g')
+
+            - echo "Building Docker image"
+            - >
+              docker build 
+              --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_S3 
+              --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_S3 
+              --build-arg S3_BUCKET_URL=$S3_BUCKET_URL_CONNECTIONSPHP 
+              -t admin-fe .
+
+            - docker tag admin-fe:latest $ECR_REPOSITORY:$BRANCH_NAME
+
+            - docker push $ECR_REPOSITORY:$BRANCH_NAME
+          services:
+            - docker
+
+      - step:
+          name: Deploy to $BRANCH_NAME Server
+          script:
+            - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $SERVER_USER_ADMIN_FE@$SERVER_HOST_ADMIN_FE " if [ -f /home/$SERVER_USER_ADMIN_FE/devops/docker-compose.yml ]; then cd /home/$SERVER_USER_ADMIN_FE/devops; docker-compose pull; docker ps -q --filter 'name=admin_fe' | grep -q . && docker rm -f admin_fe; docker-compose up -d; else echo 'docker-compose.yml not found'; fi "
+            - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $SERVER_USER_ADMIN_FE@$SERVER_HOST_ADMIN_FE "
+                if [ -f /home/$SERVER_USER_ADMIN_FE/devops/docker-compose.yml ]; then
+                  cd /home/$SERVER_USER_ADMIN_FE/devops;
+                  docker-compose pull;
+                  docker ps -q --filter 'name=admin_fe' | grep -q . && docker rm -f admin_fe;
+                  docker-compose up -d;
+                else
+                  echo 'docker-compose.yml not found';
+                fi
+              "
+          services:
+            - docker
+
+definitions:
+  services:
+    docker:
+      memory: 2048

@@ -1,0 +1,1148 @@
+img {
+  max-width: 100%;
+}
+
+input[type="number"] {
+  padding-right: 0 !important;
+}
+
+.form-control {
+  border-radius: 3px;
+}
+
+.btn_float {
+  float: right;
+  background: #35A476;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+}
+
+#offcanvasRight {
+  width: 700px;
+}
+
+#nav-tab {
+  display: flex;
+  justify-content: space-between;
+}
+
+#nav-tab button {
+  border: 0;
+  color: rgb(128, 128, 128);
+  width: max-content;
+  font-size: 14px;
+}
+
+#nav-tab button.active {
+  border-bottom: 2px solid #35A476;
+  color: #35A476;
+  font-weight: 500;
+}
+
+#nav-profile #search {
+  border-radius: 0;
+}
+
+#nav-profile .search_div {
+  background: #D4E9FF;
+}
+
+/* Shahrez plan listing css */
+.view-type-box {
+  width: max-content;
+  background: #E7E7F0;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.view-type-box button {
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  padding: 7px 5px;
+  height: max-content;
+  width: max-content;
+  line-height: 0;
+}
+
+.view-type-box button:first-child {
+  margin-right: 3px;
+}
+
+.view-type-box button path,
+.view-type-box button circle,
+.view-type-box button rect {
+  fill: #6E6E6F;
+}
+
+.view-type-box button.active {
+  background: #35A476;
+}
+
+.view-type-box button.active path,
+.view-type-box button.active circle,
+.view-type-box button.active rect {
+  fill: white;
+}
+
+.config-row {
+  background: #DBEDE6;
+  padding: 0 12px 0 0;
+  border-radius: 3px;
+  width: 100%;
+  margin: 20px auto 20px;
+}
+
+.config-row .inactive-active-tab-box {
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 1px solid white;
+}
+
+#inactive-active-tabs button {
+  width: 50%;
+  background: transparent;
+  border: none;
+  padding: 17px 10px;
+  font-size: 14px;
+  color: #35A476;
+  text-transform: uppercase;
+  border-radius: 0;
+}
+
+#inactive-active-tabs button:first-child {
+  border-radius: 3px 0 0 3px;
+}
+
+#inactive-active-tabs button:last-child {
+  border-right: 1px solid white;
+}
+
+#inactive-active-tabs button.active {
+  background: #35A476;
+  color: white;
+  font-weight: 500;
+}
+
+.config-row .form-group {
+  background: white;
+  border-radius: 4px;
+  padding: 7px 10px;
+}
+
+.config-row input {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+}
+
+.config-row input:focus {
+  box-shadow: none;
+}
+
+.config-row .imp-exp-btn {
+  padding: 0;
+  background: transparent;
+  border: none;
+  margin-right: 20px;
+}
+
+.config-row .imp-exp-btn svg path {
+  fill: #35A476;
+}
+
+.config-row .filter-btn,
+.config-row .delete-btn {
+  background: white;
+  border: none;
+  padding: 0px 8px 5px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.config-row .filter-btn {
+  margin-right: 10px;
+}
+
+.config-row .filter-btn .count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #35A476;
+  color: white;
+  font-size: 7px;
+  border-radius: 1000px;
+  border: 1px solid white;
+  padding: 0px 3px;
+}
+
+.config-row .filter-btn svg path,
+.config-row .delete-btn svg path {
+  fill: #35A476;
+}
+
+.list-table {
+  border: 1px solid #E4E5E7;
+  border-radius: 5px;
+}
+
+.list-table table {
+  width: 100%;
+}
+
+.list-table table tr {
+  border-bottom: 1px solid #E4E5E7;
+}
+
+.list-table table tr th {
+  background: #DBEDE6;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.list-table table tr th:first-child {
+  border-top-left-radius: 4px;
+}
+
+.list-table table tr th:last-child {
+  border-top-right-radius: 4px;
+  width: 120px;
+}
+
+.list-table table tr td {
+  padding: 15px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.list-table table tr:last-child td:first-child {
+  border-bottom-left-radius: 4px;
+}
+
+.list-table table tr:last-child td:last-child {
+  border-bottom-right-radius: 4px;
+}
+
+.list-table table .count {
+  font-size: 12px;
+  color: white;
+  background: #35A476;
+  padding: 3px 15px;
+  border-radius: 5px;
+  width: max-content;
+  margin: auto;
+}
+
+.list-table table .desc-btn {
+  background: none;
+  padding: 0 0 0 4px;
+  border: none;
+}
+
+.list-table table .desc-btn:focus {
+  box-shadow: none;
+}
+
+.list-table table .desc-btn svg {
+  width: 20px;
+  height: 25px;
+}
+
+.list-table table .desc-btn svg path {
+  fill: #35A476;
+}
+
+.list-table table .status-stat {
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 1000px;
+  width: max-content;
+  display: flex;
+  align-items: center;
+}
+
+.list-table table .published-stat {
+  border: 1px solid #37C560;
+  background: #37c56033;
+}
+
+.list-table table .draft-stat {
+  border: 1px solid #817E7B;
+  background: #DEDEDE;
+}
+
+.list-table table .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 1000px;
+  margin-right: 6px;
+}
+
+.list-table table .green-dot {
+  background: #37C560;
+}
+
+.list-table table .gray-dot {
+  background: #817E7B;
+}
+
+.list-table table .action-btn {
+  border: none;
+  background: transparent;
+  pointer-events: none;
+  padding: 0;
+}
+
+.list-table table .action-btn img {
+  pointer-events: all;
+}
+
+.list-table table .action-btn:focus {
+  box-shadow: none;
+}
+
+.list-table table td {
+  position: relative;
+}
+
+.list-table table .form-switch .form-check-input {
+  height: 1rem;
+  width: 2.2rem;
+  position: absolute;
+  top: 46%;
+  left: 78%;
+  transform: translate(-50%, -50%);
+}
+
+.list-table table .form-switch .form-check-input:checked {
+  background-color: #37C560;
+  border: none;
+}
+
+.list-table table .dropdown-menu {
+  padding: 0;
+  width: 120px;
+  left: -102px !important;
+  top: -2px !important;
+  min-width: max-content;
+  height: max-content;
+}
+
+.list-table table .dropdown-menu::before,
+.list-table table .dropdown-menu::after , .dropdown-menu::before, .dropdown-menu::after{
+  content: '';
+  position: absolute;
+  top: 7px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  z-index: 10;
+}
+
+.list-table table .dropdown-menu::before, .dropdown-menu::before {
+  right: -9px;
+  border-left: 8px solid lightgray;
+}
+
+.list-table table .dropdown-menu::after, .dropdown-menu::after {
+  right: -7px;
+  border-left: 7px solid white;
+}
+
+.list-table table .dropdown ul, .dropdown ul {
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  transform: none!important;
+}
+
+.list-table table .dropdown ul button, .dropdown ul button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.list-table table .dropdown ul button:hover, .dropdown ul button:hover {
+  background: #DBEDE6;
+}
+
+.list-table table .dropdown ul button img, .dropdown ul button img {
+  width: 13px;
+  margin-right: 3px;
+  font-size: 15px;
+}
+
+@media(max-width: 575px) {
+  .config-row {
+    padding-right: 0;
+  }
+
+  #inactive-active-tabs {
+    margin-bottom: 20px;
+  }
+
+  .config-row .config-col {
+    margin-bottom: 20px;
+  }
+
+  .list-table {
+    overflow-x: auto;
+  }
+
+  .list-table table {
+    width: 576px;
+  }
+
+  .config-row .search-bar {
+    margin-bottom: 20px;
+  }
+}
+
+/* Shahrez plan listing css */
+
+/* ====Shahrez Add plan CSS==== */
+.form-row {
+  margin: 30px auto 0;
+}
+/*.form-row:first-child {*/
+/*  margin-top: 0;*/
+/*}*/
+
+.form-row .form-group {
+  margin-bottom: 13px;
+}
+
+.form-row .form-group label {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.form-row .form-group input,
+.form-row .form-group select {
+  font-size: 12px;
+  padding: 8px 12px;
+}
+
+.form-row .form-group label .red {
+  color: red;
+}
+
+.form-row .form-group input[readonly] {
+  background: #F1F6FF;
+  pointer-events: all;
+}
+
+.form-row .user-row {
+  margin: 10px 0 0;
+}
+
+.user-row .form-check {
+  margin-right: 10px;
+}
+
+.user-row .form-check input {
+  height: 18px;
+  width: 18px !important;
+  max-width: unset;
+  min-width: unset;
+  max-height: unset;
+  margin-right: 5px !important;
+  width: unset;
+  margin-right: 5px;
+  padding: 0;
+}
+
+.user-row .userCount.disabled {
+  color: lightgray;
+  pointer-events: none;
+}
+
+.user-row .userCount:not(:last-child) {
+  margin-right: 10px;
+}
+
+.user-row .userCount label {
+  margin-right: 10px;
+}
+
+.user-row .userCount input {
+  width: 100%;
+  /*width: 52px;*/
+  height: 28px;
+  border-radius: 1px;
+  font-size: 12px;
+}
+
+.form-row select {
+  appearance: auto;
+}
+
+.payment-frequency-box {
+  border: 1px solid #E4E5E7;
+  padding: 20px 15px;
+  border-radius: 5px;
+  margin: 10px 0 20px;
+}
+
+.payment-frequency-box .payment-frequency-row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.payment-frequency-box .payment-frequency-row:not(:last-child) {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E4E5E7;
+  margin-bottom: 10px;
+}
+
+.payment-frequency-box .payment-frequency-row>*:first-child {
+  padding-left: 0;
+}
+
+.payment-frequency-box .payment-frequency-row>*:last-child {
+  padding-right: 0;
+}
+
+#offcanvasRight .btns {
+  margin: 20px 0;
+}
+
+#offcanvasRight .next-btn,
+#offcanvasRight .submit-btn {
+  background: #35A476;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  padding: 9px 23px;
+}
+#offcanvasRight .submit-btn{
+  padding: 9px 16px;
+}
+
+
+#offcanvasRight .prev-btn {
+  background: transparent;
+  color: #333333;
+  font-weight: 500;
+  font-size: 14px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  padding: 9px 10px;
+  margin-right: 20px;
+}
+
+.form-row .tiered-payment-frequency-box {
+  margin-top: 5px;
+}
+
+.tiered-payment-frequency-box .payment-info {
+  font-size: 12px;
+}
+
+.tiered-payment-frequency-box .payment-info span {
+  margin-left: 10px;
+  background: #DBEDE6;
+  padding: 5px 10px;
+}
+
+.single-tiered-payment-frequency-inner-box {
+  /*border: 1px solid #E4E5E7;*/
+  padding: 20px 15px;
+  border-radius: 5px;
+  margin: 10px 0 20px;
+}
+
+.single-tiered-payment-frequency-inner-box>.row {
+  margin: auto;
+}
+
+.single-tiered-payment-frequency-inner-box>.row:not(:nth-last-child(2)) {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E4E5E7;
+  margin-bottom: 10px;
+}
+
+.single-tiered-payment-frequency-inner-box>.row>*:first-child {
+  padding-left: 0;
+}
+
+.single-tiered-payment-frequency-inner-box>.row>*:last-child {
+  padding-right: 0;
+}
+
+.single-tiered-payment-frequency-inner-box .range-row span {
+  margin: -5px 5px 0;
+}
+
+.single-tiered-payment-frequency-inner-box .delete-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  position: relative;
+  height: 30px;
+  width: 30px;
+  bottom: 10px;
+}
+
+.single-tiered-payment-frequency-inner-box .delete-btn img {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.single-tiered-payment-frequency-inner-box .add-btn {
+  background: #cfebe0;
+  width: 100%;
+  border: 1px dashed #35A476;
+  color: #35A476;
+  border-radius: 3px;
+  padding: 7px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.module-main-box {
+  margin-top: 25px;
+}
+
+.module-main-box .search-bar {
+  background: #b7e4d3;
+  padding: 10px 25px;
+  border-bottom: 1px solid white;
+}
+
+.module-main-box .search-bar .form-group {
+  background: white;
+  border-radius: 4px;
+  padding: 7px 10px;
+}
+
+.module-main-box .search-bar input {
+  background: transparent;
+  padding: 0;
+  border: none;
+  font-size: 14px;
+}
+
+.module-main-box .search-bar input:focus {
+  box-shadow: none;
+}
+
+.module-main-box .select-all-modules-bar {
+  background: #DBEDE6;
+  padding: 12px 25px;
+  border-bottom: 1px solid white;
+}
+
+.module-main-box .select-all-modules-bar input {
+  padding: 0;
+  height: 21px;
+  width: 21px;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
+.module-main-box .select-all-modules-bar label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.custom-checkbox {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  width: max-content;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 19px;
+  width: 19px;
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid gray;
+}
+
+.custom-checkbox input:checked+.checkmark {
+  border: 2px solid white;
+  background-color: white;
+  border-color: #35A476;
+}
+
+.checkmark:after {
+  content: "\2713";
+  position: absolute;
+  display: none;
+  left: 2px;
+  top: -3px;
+  color: #35A476;
+}
+
+.custom-checkbox input:checked+.checkmark:after {
+  display: block;
+}
+
+.module-main-box .module-list-box {
+  padding: 20px 25px 0;
+}
+
+.module-main-box .module-list-box h6 {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.module-main-box .module-list-box .custom-checkbox .checkmark:after {
+  top: -4px;
+}
+
+.module-main-box .module-list-box .custom-checkbox .title {
+  font-size: 14px;
+}
+
+.module-main-box .module-list-box .custom-checkbox button {
+  background: transparent;
+  padding: 0;
+  border: none;
+  margin-left: 5px;
+}
+
+.module-main-box .module-list-box .custom-checkbox button:focus {
+  box-shadow: none;
+}
+
+.module-main-box .module-list-box .custom-checkbox input:checked+.checkmark+.title {
+  color: #35A476;
+  font-weight: 600;
+}
+
+.module-main-box .module-list-box .custom-checkbox input:checked~button svg path {
+  fill: #35A476;
+}
+
+.module-main-box .child-module-list {
+  margin-top: 10px;
+  margin-left: 15px;
+  transform: scale(.95);
+}
+
+.module-main-box .single-module-parent-box {
+  margin-bottom: 10px;
+}
+
+.module-main-box .module-checkbox:not(:first-child) {
+  margin-top: 10px;
+}
+
+.addon-list-box{
+  padding: 35px 25px 0;
+}
+.addon-list-box .custom-checkbox .title{
+  font-size: 14px;
+}
+.addon-list-box .custom-checkbox input:checked+.checkmark+.title {
+  font-weight: 600;
+}
+.addon-list-box .single-addon:not(:last-child){
+  margin-bottom: 17px;
+}
+
+.image-container {
+  display: inline-block;
+  position: relative;
+}
+
+.image-container img{
+  width: 11px;
+  margin-left: 5px;
+}
+
+.tooltip-container {
+  position: absolute;
+  bottom: 100%;
+  left: 10px;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  max-width: max-content;
+  width: 300px;
+}
+
+.image-container:hover .tooltip-container {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tooltip-content {
+  background-color: #555;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+  font-size: 12px;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 8px 0;
+  border-color: #555 transparent transparent transparent;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.feature-main-box{
+  padding: 0 14px 14px 16px;
+}
+.feature-main-box .accordion-item{
+  border: none;
+  margin-bottom: 10px;
+}
+.feature-main-box .accordion-item button{
+  border: 1px solid lightgray;
+  font-size: 14px;
+  padding: 10px 15px;
+}
+.feature-main-box .accordion-button:focus{
+  box-shadow: none;
+}
+.feature-main-box .accordion-button:not(.collapsed){
+  background: #DBEDE6;
+}
+.feature-main-box .nav-tabs{
+  width: max-content;
+}
+.feature-main-box .nav-tabs .nav-link{
+  border: none;
+  color: rgb(128, 128, 128);
+}
+.feature-main-box .nav-tabs .nav-link.active{
+  color: #35A476;
+  font-weight: 500;
+  border-bottom: 2px solid #35A476;
+}
+.feature-main-box .custom-checkbox {
+  margin-top: 15px;
+  font-size: 14px;
+}
+.inner-block{
+  margin: 1px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding-bottom: 9px;
+}
+.plus_icon{
+  font-size: 18px;
+  color: #35a476;
+  position: absolute;
+  margin-left: -17px;
+}
+.add_more_hollow_btn{
+  height: 30px;
+  background: #DBEDE6;
+  color: #35a476 !important;
+  font-weight: 600 !important;
+  border: 1px solid #35a47694 !important;
+  border-style: dashed !important;
+}
+.dbg{
+  background: #F1F6FF;
+}
+
+
+
+.add_more_hollow_btn:hover .plus_icon,.add_more_hollow_btn:hover{
+  background: #35a476;
+  transition: all 0.1ms;
+  color: #FFFFFF !important;
+}
+.text-danger{
+  width: fit-content;
+  background: red;
+  color: white !important;
+  padding: 0px 5px 2px 5px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  position: absolute;
+  right: 19px;
+  top: 50px;
+}
+.m-x .text-danger{
+  right: 4px !important;
+  top: 27px !important;
+}
+
+.valid-input {
+  border-color: #dee2e6;
+}
+
+/* Styles for invalid input */
+.invalid-input {
+  border-color: red;
+}
+.checkboxes-width{
+  width: 20px;
+}
+
+#deletePopup .modal-dialog{
+  position: absolute;
+  margin:0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%)!important;
+  width: 100%;
+}
+#deletePopup p{
+  margin-bottom: 30px;
+}
+#deletePopup button{
+  font-size: 14px;
+}
+#deletePopup .close-btn{
+  border: 1px solid black;
+  margin-right: 10px;
+}
+#deletePopup .delete-btn{
+  background: #35A476;
+  color: white;
+}
+.sl_ctg{
+  font-size: 16px;
+  font-weight: 600;
+}
+.userminmax{
+  margin-top: 3px;
+  display: flex;
+}
+
+.icon svg{
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 37px;
+  right: 18px;
+  fill: #2e3236;
+}
+
+/* Custom colors for increment and decrement icons */
+/* Adjust colors as needed */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-outer-spin-button:hover,
+input[type="number"]::-webkit-outer-spin-button:focus {
+  background-color: #007bff;
+  color: #fff;
+}
+
+input[type="number"]::-webkit-inner-spin-button:hover,
+input[type="number"]::-webkit-inner-spin-button:focus {
+  background-color: #28a745 !important;
+  color: #fff !important;
+}
+
+@media(max-width: 1199px){
+  .list-table{
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+  .list-table table{
+    width: 991px;
+    height: calc(100% - 45px);
+  }
+}
+@media(max-width: 575px) {
+  #nav-tab {
+    justify-content: center;
+  }
+
+  #nav-tab button {
+    font-size: 11px;
+  }
+
+  .form-row .user-row {
+    margin-bottom: 10px;
+  }
+
+  .payment-frequency-box .payment-frequency-row>*:nth-child(even) {
+    padding-right: 0;
+  }
+
+  .payment-frequency-box .payment-frequency-row>*:nth-child(odd) {
+    padding-left: 0;
+  }
+
+  .single-tiered-payment-frequency-inner-box>.row>*:nth-child(3) {
+    padding-left: 0;
+  }
+
+  .single-tiered-payment-frequency-inner-box>.row>*:nth-child(2),
+  .single-tiered-payment-frequency-inner-box>.row>*:last-child {
+    padding-right: 0;
+  }
+
+  .module-main-box .search-bar input {
+    background: transparent;
+    padding: 0;
+    border: none;
+    font-size: 12px;
+  }
+
+  .checkmark {
+    height: 17px;
+    width: 17px;
+  }
+
+  .module-main-box .select-all-modules-bar label {
+    font-size: 12px;
+  }
+
+  .module-main-box .module-list-box .custom-checkbox .checkmark:after {
+    top: -5px;
+    left: 0;
+  }
+
+  .module-main-box .module-list-box .custom-checkbox .title {
+    font-size: 12px;
+  }
+
+  #offcanvasRight .prev-btn,
+  #offcanvasRight .next-btn,
+  #offcanvasRight .submit-btn {
+    font-size: 12px;
+    padding: 9px 29px;
+  }
+}
+
+.custom_img{
+  width: 95px;
+  height: 95px;
+  transition: 0.3s ease-in-out;
+}
+.ch_file{
+  height: 95px;
+  display: flex;
+  align-items: center;
+}
+.img_div{
+  width: fit-content;
+  margin-left: -102px;
+}
+.btn_close{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 10px;
+}
+/* ====Shahrez CSS==== */
+
+.p-action .btn-secondary.dropdown-toggle{
+  background: transparent;
+  border: 0;
+}
+.p-action .dropdown-menu{
+  left: -118px !important;
+  top: 0px !important;
+}
+.no_event{
+  pointer-events: none;
+  background-color: #4e565e47 !important;
+  color: #fff !important;
+}
+.feature-delete{
+  position: absolute;
+  right: 0;
+  top: -12px;
+}
+.imp-exp-btn .dropdown-menu {
+  margin: 12px 0 0 0 !important;
+  background: #dbede6;
+  width: 300px;
+}
+
+.imp-exp-btn .dropdown-menu:before {
+  top: -11px !important;
+  transform: rotate(-90deg) !important;
+  left: 284px !important;
+}
+.search-dropdown.small{
+  position: absolute !important;
+  width: 200px !important;right: 284px !important;
+
+}
+.m-top{
+  margin-top: 12px;
+  right: -1px;
+}
+
+
+/* Style for the custom drag preview */
+.table-drag-preview {
+  background-color: white;
+  width: 100%;
+  border-collapse: collapse;
+  display: table; /* Ensure it looks like a table row */
+}
+
+/* Maintain appearance of drag preview */
+.table-drag-preview tr {
+  width: calc(100% -  50%);
+}
+.table-drag-preview td {
+  padding: 15px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid #E4E5E7;
+}
+
+/* Prevent row shrinking during dragging */
+.cdk-drag {
+  display: table-row;
+}
+
+/* Ensure the preview during dragging maintains the full width of the table */
+.cdk-drag-preview {
+  display: table; /* Ensure the preview remains a table layout */
+  width: calc(100% - 21%); /* Match the table width */
+  background-color: white; /* Optional: Style the preview */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visual */
+}
+
+/* Ensure the placeholder has the same width and height as the dragged row */
+.cdk-drag-placeholder {
+  visibility: hidden; /* Placeholder remains hidden but maintains size */
+  display: table-row;
+  width: 100%; /* Match the table width */
+}
+.b_close{
+  position: absolute;
+  top: -6px;
+  font-size: 8px;
+  left: 9px;
+}
+.c-s{
+  width: 100%;
+  padding: 5px 0 5px 5px;
+  font-size: 13px !important;
+  font-weight: 600;
+}

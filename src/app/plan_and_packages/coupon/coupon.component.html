@@ -1,0 +1,372 @@
+<div class="row">
+  <div class="col-md-6">
+
+  </div>
+  <div class="col-md-6 ">
+    <button class="btn btn_custom btn_style float-end" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight" (click)="OpenModel()">
+      + Create Coupon
+    </button>
+  </div>
+</div>
+
+
+<!-- START ADD/EDIT COUPONS -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+     #modelCoupon>
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Create Coupon</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="container">
+      <form [formGroup]="addCouponForm">
+        <div class="mb-3">
+          <label for="couponName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="couponName" formControlName="couponName"
+                 placeholder="First purchase discount" aria-describedby="nameHelp">
+          <div id="nameHelp" class="form-text">This will appear on customers' receipts and invoices.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="couponID" class="form-label">ID <span class="text-muted">(Optional)</span></label>
+          <input type="text" class="form-control" id="couponID" aria-describedby="idHelp" formControlName="couponID">
+          <div id="idHelp" class="form-text">This will identify this coupon in the API. We recommend leaving this blank
+            so we can generate an ID for you.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Type</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="discountType" name="discountType"
+                   value="percentage" id="percentageDiscount" checked (change)="controlTypeChange($event)">
+            <label class="form-check-label" for="percentageDiscount">
+              Percentage discount
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="discountType" name="discountType"
+                   value="fixed" id="fixedAmountDiscount" (change)="controlTypeChange($event)">
+            <label class="form-check-label" for="fixedAmountDiscount">
+              Fixed amount discount
+            </label>
+          </div>
+        </div>
+
+        @switch (controlFormFieldTypeUi) {
+          @case (true) {
+            <div class="mb-3">
+              <label for="percentageOff" class="form-label">Percentage off</label>
+              <input type="number" class="form-control" id="percentageOff" formControlName="typePercentageOff" value=""
+                     placeholder="%" aria-describedby="percentageHelp">
+            </div>
+          }
+          @case (false) {
+            <div class="mb-3">
+              <div class="row g-2">
+                <div class="col-md-6">
+                  <lib-country-list [countryListConfig]="customConfig"
+                                    (onCountryChange)="onCountryChange($event)"></lib-country-list>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-text spanStuck">{{ codeFixedSymbol }}</span>
+                    <input type="text" class="form-control " placeholder="Amount" aria-label="Amount"
+                           formControlName="typeCurrencyAmount" value="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        }
+
+
+
+
+
+        <!--        @if(showSpecificProductAddition){-->
+        <div class="row mt-3 trigger">
+          <div class="col-md-12">
+            <div class="form-check form-switch ">
+              <input class="form-check-input" type="checkbox" id="applySpecificProducts"
+                     (click)="controlSpecificProductAddition($event)">
+              <label class="form-check-label" for="applySpecificProducts">Apply to specific products</label>
+            </div>
+          </div>
+          <div formArrayName="applySpecificProductArray">
+            @if (specificProductArrayControls().length > 0) {
+              @for (specificProduct of specificProductArrayControls(); track specificProduct) {
+                <div [formGroupName]="$index" class="mt-3">
+                  <div class="row"
+                       [ngClass]="{'sp': !showSpecificProductAddition, 'spTH' : showSpecificProductAddition}">
+                    <div class="col-md-11 ">
+                      <select class="form-select" formControlName="applySpecificProductValue"
+                              aria-label="Default select example">
+                        <option value="" disabled hidden="hidden" selected>Select</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+                    @if ($index > 0) {
+                      <div class="col-md-1">
+                        <a class="delete_product float-end " (click)="deleteApplySpecificProduct($index)">
+                          <img ngSrc="../../../assets/css/sprite_images/trash.svg" class="actions_icon2" width="20"
+                               height="20" alt="">
+                        </a>
+                      </div>
+                    }
+
+
+                  </div>
+                </div>
+
+              }
+            }
+            <div class="col-md-12">
+              <a class="btn p-0 add_another_product" (click)="addApplySpecificProduct()">Add another product</a>
+            </div>
+
+          </div>
+
+        </div>
+        <!--        }-->
+
+
+        <div class="mb-3">
+          <label for="duration" class="form-label">Duration</label>
+          <select class="form-select" id="duration" aria-describedby="durationHelp" formControlName="duration">
+            <option value="" disabled hidden="hidden" selected>Select</option>
+            <option value="forever">Forever</option>
+            <option value="once">Once</option>
+            <option value="repeating">Multiple months</option>
+            <!-- Add other duration options here if needed -->
+          </select>
+          <div id="durationHelp" class="form-text">For subscriptions and customers, this determines how long this coupon
+            will apply once redeemed. One-off invoices accept both "once" and "forever" coupons.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="col-md-12">
+            <label class="form-label">Redemption limits</label>
+          </div>
+
+          <div class="col-md-12">
+            <div class="form-check d-inline-block">
+              <input type="checkbox" class="form-check-input" id="limitDateRange" formControlName="limitDateRange"
+                     name="limitDateRange" (click)="controlLimitRange($event)">
+              <label class="form-check-label" for="limitDateRange">Limit the date range when customers can redeem this
+                coupon</label>
+            </div>
+          </div>
+          @if (showLimitDateTimeRange) {
+            <div class="row">
+              <div class="col-md-7 position-relative">
+                <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time" class="dtime"
+                       formControlName="limitDateRangeValue" value="">
+                <owl-date-time #dt1></owl-date-time>
+              </div>
+            </div>
+          }
+
+          <div class="col-md-12">
+            <div class="form-check d-inline-block">
+              <input type="checkbox" class="form-check-input" id="limitTotalRedemptions" name="limitTotalRedemptions"
+                     formControlName="limitTotalRedemptions" (click)="controlTimeLimitRange($event)">
+              <label class="form-check-label" for="limitTotalRedemptions">Limit the total number of times this coupon
+                can be redeemed</label>
+            </div>
+          </div>
+          @if (showTimeLimitRange) {
+            <div class="row">
+              <div class="col-md-4">
+                <div class="input-group">
+                  <input type="number" class="form-control timeHeight" value="1" aria-label="Number of times"
+                         formControlName="limitTotalRedemptionsValue">
+                  <span class="input-group-text timeHeight">time</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <small class="text-muted">This limit applies across customers so it won't prevent a single customer from
+                  redeeming multiple times.</small>
+              </div>
+            </div>
+          }
+
+        </div>
+        <div class="form-check  d-inline-block mb-3 p-0">
+          <div class="form-check form-switch ">
+            <input class="form-check-input" type="checkbox" id="customerFacingCodes"
+                   formControlName="customerFacingCodes" name="customerFacingCodes"
+                   (click)="controlCustomerFacingCodes($event)">
+            <label class="form-check-label" for="customerFacingCodes">Use customer-facing coupon codes</label>
+          </div>
+        </div>
+
+
+        @if (CustomerFacingCodesFlag) {
+          @if (customerFacingCodesArrayControls().length > 0) {
+            <div formArrayName="customerFacingCodesArray">
+              @for (customer of customerFacingCodesArrayControls(); track customer; let index = $index) {
+                <div [formGroupName]="index">
+                  <div class="row mx-3 cfBlock position-relative">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label for="code" class="form-label">Code will be generated upon creation</label>
+                      </div>
+                      <div class="col-md-3 mb-3">
+                        <input type="text" class="form-control" id="code" formControlName="customerFacingCode"
+                               value="FRIENDS20">
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="firstTimeOrder"
+                               formControlName="customerFacingFirstTimeOrder" name="customerFacingFirstTimeOrder" value="">
+                        <label class="form-check-label" for="firstTimeOrder">
+                          Eligible for first-time order only
+                        </label>
+                      </div>
+                    </div>
+                    <!-- START Limit to a specific customer -->
+                    <div class="col-md-12">
+                      <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="specificCustomer"
+                               formControlName="customerFacingSpecificCustomer" name="customerFacingSpecificCustomer"
+                               (click)="controlCustomDropdown($event, index)">
+                        <label class="form-check-label" for="specificCustomer">
+                          Limit to a specific customer
+                        </label>
+                      </div>
+                      @if (customerFacingArray[index] !== undefined && customerFacingArray[index].showCustomerDropdown) {
+                        <div class="row">
+                          <div class="col-md-6 searchDropdown">
+                            <app-search-able-dropdown
+                              [items]="items"
+                              [size]="'small'"
+                              [img]="'product'"
+                              [label]="'artName'"
+                              [uid]="'productId'"
+                              (afterChange)="onSelectionChanged($event)"
+                            >
+                            </app-search-able-dropdown>
+                          </div>
+                        </div>
+                      }
+
+                    </div>
+                    <!-- END Limit to a specific customer -->
+
+
+                    <div class="row">
+                      <!-- START Limit the number of times this code can be redeemed -->
+                      <div class="col-md-12 ">
+                        <div class="form-check mb-2">
+                          <input class="form-check-input" type="checkbox" id="limitRedemptions"
+                                 formControlName="customerFacingLimitRedemptions" name="customerFacingLimitRedemptions"
+                                 (click)="controlLimitRedemptions($event)">
+                          <label class="form-check-label" for="limitRedemptions">
+                            Limit the number of times this code can be redeemed
+                          </label>
+                        </div>
+
+                        @if (controlLimitRedemption) {
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="input-group">
+                                <input type="number" class="form-control timeHeight" value="1" aria-label="Number of times"
+                                       formControlName="customerFacingLimitRedemptionsValue"
+                                       name="customerFacingLimitRedemptionsValue">
+                                <span class="input-group-text timeHeight">time</span>
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                      <!-- END Limit the number of times this code can be redeemed -->
+
+                      <!-- START  Add an expiration date -->
+                      <div class="col-md-12 ">
+                        <div class="form-check mb-2">
+                          <input class="form-check-input" type="checkbox" id="expirationDate"
+                                 (click)="controlExpirationDate($event)" formControlName="customerFacingExpirationDate"
+                                 name="customerFacingExpirationDate">
+                          <label class="form-check-label" for="expirationDate">
+                            Add an expiration date
+                          </label>
+                        </div>
+
+                        @if (controlExpirationDateFlag) {
+                          <div class="row">
+                            <div class="col-md-7 position-relative">
+                              <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time"
+                                     name="customerFacingCodeExpirationDate" class="dtime"
+                                     formControlName="customerFacingCodeExpirationDate">
+                              <owl-date-time #dt1></owl-date-time>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                      <!-- END Add an expiration date -->
+
+                      <!-- START  Require minimum order value -->
+                      <div class="col-md-12">
+                        <div class="form-check mb-2">
+                          <input class="form-check-input" type="checkbox" id="minOrderValue" formControlName="customerFacingMinOrderValue" name="customerFacingMinOrderValue"
+                                 (click)="minOrderValue($event)">
+                          <label class="form-check-label" for="minOrderValue">
+                            Require minimum order value
+                          </label>
+                        </div>
+                        @if (minOrderValueFlag) {
+                          <div class="row g-2 ml">
+                            <div class="col-md-6">
+                              <lib-country-list [countryListConfig]="customConfig"
+                                                (onCountryChange)="onCodeCountryChange($event)"></lib-country-list>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="input-group">
+                                <span class="input-group-text spanStuck">{{ codeSymbol }}</span>
+                                <input type="text" class="form-control " placeholder="Amount" aria-label="Amount" formControlName="customerFacingAmount" name="customerFacingAmount">
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                      <!-- START Require minimum order value -->
+
+                    </div>
+                    <a class="delete_product cf-block-delete float-end " (click)="deleteCFBlock(index)">
+                      <img ngSrc="../../../assets/css/sprite_images/trash.svg" class="actions_icon2" width="20"
+                           height="20" alt="">
+                    </a>
+
+                  </div>
+                </div>
+              }
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button" class="btn mt-3 mx-2 codeBlock" (click)="addCustomerFacingBlock()">
+                    + Add another code
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          }
+        }
+
+
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-secondary me-2">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create coupon</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- END ADD/EDIT COUPONS -->

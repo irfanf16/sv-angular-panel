@@ -1,0 +1,70 @@
+<div class="row h-100 row_style">
+  <div class="col-md-6">
+    <div class="row d-block align-items-center h-100 custom_bg">
+      <div class="col-md-12">
+        <img class="search_icon" ngSrc="assets/css/sprite_images/staffViz.svg" width="150" height="150" priority/>
+      </div>
+      <div class="col-md-12 text-center">
+        <img class="search_icon login_img" ngSrc="assets/css/sprite_images/loginImage.svg" width="400" height="400"
+             priority/>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 bg_white position-relative">
+    <app-spinner-component *ngIf="showSpinner"></app-spinner-component>
+    <div class="custom_padding ">
+
+      <span class="login_font">Login to Your Account</span>
+
+      <form class="w-100 position-relative">
+
+        <div class="mb-3 position-relative" [formGroup]="loginForm">
+          <label for="username" class="form-label">Email</label>
+          <input type="email" id="username" class="form-control"
+                 [ngClass]="{
+                      'valid-input': loginForm.get('username')?.valid,
+                      'invalid-input': loginForm.get('username')?.invalid && (showErrors),
+                      'untouched-input': loginForm.get('username')?.untouched  && (showErrors == false)
+                    }"
+                 formControlName="username" aria-describedby="emailHelp">
+
+          <div *ngIf="showErrors && formControl['username'].errors" class="text-danger">
+            <div *ngIf="formControl['username'].errors['email']">Email must be valid.</div>
+            <div *ngIf="formControl['username'].errors['required']">Email is required.</div>
+          </div>
+
+        </div>
+        <div class="position-relative password_input" [formGroup]="loginForm">
+          <label for="password" class="form-label">Password</label>
+          <input [type]="password" id="password" class="form-control {{passwordShowHide}}"
+                 [ngClass]="{
+                      'valid-input': loginForm.get('password')?.valid,
+                      'invalid-input': loginForm.get('password')?.invalid && (showErrors),
+                      'untouched-input': loginForm.get('password')?.untouched  && (showErrors == false)
+                    }"
+                  formControlName="password">
+
+            <img class="search_icon position-absolute" ngSrc="assets/css/sprite_images/passwordEyeView.svg" width="20"
+                 height="20" priority (click)="onShowPasswordClick()" *ngIf="show"/>
+            <img class="search_icon position-absolute" ngSrc="assets/css/sprite_images/hide eye_password.svg" width="20"
+                 height="20" priority (click)="onShowPasswordClick()" *ngIf="!show"/>
+
+          <div *ngIf="showErrors && formControl['password'].errors" class="text-danger">
+            <div *ngIf="formControl['password'].errors['valid']">Password must be valid.</div>
+            <div *ngIf="formControl['password'].errors['required']">Password is required.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <a class="a_tag" href="#">Forgot Password?</a>
+        </div>
+        <div class="mb-3 position-relative">
+          <span *ngIf="authorized" class=" position-absolute top-0 failed_validation">Invalid Email or Password</span>
+        </div>
+        <div class="col-md-12 d-flex justify-content-end">
+          <button type="submit" (click)="loginFormData()" class="btn login_btn ">Login</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

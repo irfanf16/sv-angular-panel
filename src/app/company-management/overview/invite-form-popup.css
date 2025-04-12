@@ -1,0 +1,80 @@
+.upper-content img{
+    display: inline-block;
+    margin-bottom: 30px;
+}
+.upper-content h6{
+    font-family: Roboto;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+.upper-content p{
+    font-family: Roboto;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+.invite-form .form-group{
+    margin-bottom: 10px;
+}
+.invite-form label{
+    /*font-family: Inter;*/
+    /*font-weight: 500;*/
+    /*font-size: 14px;*/
+    /*margin-bottom: 3px;*/
+}
+.invite-form label .red{
+    color: #FF0000;
+    margin-left: 2px;
+}
+.invite-form .form-control{
+    padding: 8px 10px;
+    font-family: Inter;
+    font-weight: 300;
+    font-size: 14px;
+}
+.invite-form select{
+    background:url('../../../assets/css/sprite_images/images/navigate_next.png') no-repeat 97% center/12px;
+}
+.invite-owner-btn,
+.invite-form .submit-btn input{
+    width: 100%;
+    padding: 12px 12px;
+    border: none;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 18px;
+    background: #35A476;
+    color: white;
+    margin-top: 10px;
+    border-radius: 6px;
+    letter-spacing: .5px;
+}
+
+.slide-container {
+  position: relative;
+  /*overflow: hidden;*/
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-in-out;
+  display: block;
+}
+
+.slide-out {
+  animation: slideOut 0.5s ease-in-out;
+  display:none ;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+  from { transform: translateX(0); }
+  to {
+    transform: translateX(-100%);
+    display: none;
+  }
+}
+
+

@@ -1,0 +1,199 @@
+.add_company_btn {
+  float: right;
+  font-weight: 600;
+  padding-top: 3px;
+}
+
+.plus_icon {
+  margin-bottom: 3px;
+}
+.forma{
+  margin: 0 76px 0 -64px;
+}
+.forma_type{
+  width: 282px;
+  margin-left: 3px;
+  height: 45px;
+}
+
+.required:after {
+  content:"*";
+  color:red;
+}
+
+.active_companies,
+.basic_companies,
+.on_trail_companies,
+.standard_companies,
+.professional_companies,
+.enterprize_companies {
+  padding: 10px 5px;
+  border-radius: 5px;
+}
+
+.active_companies {
+  background: #FFF2D9;
+}
+
+.on_trail_companies {
+  background: #CFF2E1;
+}
+
+.basic_companies {
+  background: #C8F4FF;
+}
+
+.standard_companies {
+  background: #696CFF26;
+}
+
+.professional_companies {
+  background: #FFF2D9;
+}
+
+.enterprize_companies {
+  background: #CFF2E1;
+}
+
+.overview_padding {
+  padding-left: 6px;
+}
+
+.unique_font_size {
+  font-size: .9vw;
+  font-weight: 600;
+}
+
+.view_all {
+  color: #35A476;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.bart_chart_section {
+  box-shadow: 0px 0px 3.770270347595215px 0px #00000033;
+}
+
+.main-inner-project-box {
+  justify-content: start;
+  align-content: center;
+  align-items: center !important;
+  display: flex !important;
+  height: 100%;
+}
+
+.progress {
+  height: 9px;
+}
+
+.overview_title {
+  font-size: 20px;
+}
+
+.amount_right {
+  float: right;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.company_title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pl_zero {
+  padding-left: 0;
+}
+
+.btn.btn-primary {
+  background: #35A476;
+  border: 0;
+}
+
+.paddingLeft_zero {
+  padding-right: 0;
+}
+
+.padding_left_right_0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.p_l {
+  padding-left: 4px;
+}
+
+.box-stat-count {
+  margin-bottom: 0;
+}
+
+.box-stat-title {
+  font-size: .74vw;
+  margin-bottom: 5px;
+}
+
+#myChart {
+  max-height: 285px;
+}
+.cre_company_initial_text{
+  font-size: 22px;
+  font-weight: 600;
+}
+.password_input .search_icon{
+  right: 10px;
+  top: 41px;
+  cursor: pointer;
+}
+.add_company_fields_padding{
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.add_company_form_max_width{
+  max-width: 430px;
+}
+.create-company-close {
+  z-index: 99;
+  top: 10px;
+  right: 15px;
+}
+@media(max-width: 1199px) {
+  .box-stat-title {
+    font-size: 1.1vw;
+  }
+}
+
+@media(max-width: 991px) {
+  .box-stat-title {
+    font-size: 1.23vw;
+  }
+
+  .main-inner-project-box {
+    display: block !important;
+    height: 100%;
+  }
+  #myChart {
+    max-height: 422px;
+  }
+  .main-inner-project-box{
+    display: block!important;
+  }
+  .main-inner-project-box canvas{
+    margin: 0 auto;
+  }
+}
+.forma_block{
+  margin-left: calc(100% - 80%);
+}
+#exampleModal {
+  width: 500px;
+}
+@media(max-width: 767px){
+  .box-stat-title{
+    font-size: 2.8vw;
+    margin-left: 5px;
+  }
+  .box-stat-count{
+    margin-left: 5px;
+  }
+}

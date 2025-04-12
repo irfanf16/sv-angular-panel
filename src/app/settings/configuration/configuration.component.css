@@ -1,0 +1,253 @@
+#offcanvasRight{
+  width: calc(100% - 50%);
+}
+
+.add_more_btn{
+  height: 40px;
+  background: #DBEDE6;
+  color: #35a476 !important;
+  font-weight: 600 !important;
+  border: 1px solid #35a47694 !important;
+  border-style: dashed !important;
+}
+
+.add_more_btn:hover, .add_more_btn:hover .plus_icon{
+  background: #35a476;
+  transition: all 0.1ms;
+  color: #FFFFFF !important;
+}
+
+.delete_icon2{
+  display: flex;
+  align-items: center;
+  margin-top: 1.7rem;
+  justify-content: end;
+  cursor: pointer;
+}
+
+.config-block{
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+/* Shahrez CSS New */
+.config-row{
+  background: #DBEDE6;
+  padding: 12px;
+  border-radius: 5px;
+  width: 100%;
+  margin: 20px auto 20px;
+}
+.config-row .form-group{
+  background: white;
+  border-radius: 4px;
+  padding: 7px 10px;
+}
+.config-row input{
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+}
+.config-row input:focus{
+  box-shadow: none;
+}
+.config-row .imp-exp-btn{
+  padding: 0;
+  background: transparent;
+  border: none;
+  margin-right: 20px;
+}
+.config-row .imp-exp-btn svg path{
+  fill: #35A476;
+}
+.config-row .filter-btn{
+  background: white;
+  border: none;
+  padding: 0px 8px 5px;
+  border-radius: 5px;
+  position: relative;
+}
+.config-row .filter-btn .count{
+  position: absolute;;
+  top: -5px;
+  right: -5px;
+  background: #35A476;
+  color: white;
+  font-size: 7px;
+  border-radius: 1000px;
+  border: 1px solid white;
+  padding: 0px 3px;
+}
+.config-row .filter-btn svg path{
+  fill: #35A476;
+}
+.list-table{
+  border: 1px solid #E4E5E7;
+  border-radius: 5px;
+}
+.list-table table{
+  width: 100%;
+}
+.list-table table tr{
+  border-bottom: 1px solid #E4E5E7;
+}
+.list-table table tr th{
+  background: #DBEDE6;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.list-table table tr th:first-child{
+  border-top-left-radius: 4px;
+}
+.list-table table tr th:last-child{
+  border-top-right-radius: 4px;
+  width: 120px;
+}
+.list-table table tr td{
+  padding: 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.list-table table tr:last-child td:first-child {
+  border-bottom-left-radius: 4px;
+}
+.list-table table tr:last-child td:last-child {
+  border-bottom-right-radius: 4px;
+}
+.list-table table .count{
+  font-size: 12px;
+  color: white;
+  background: #35A476;
+  padding: 3px 15px;
+  border-radius: 5px;
+  width: max-content;
+  margin: 0 auto;
+}
+.list-table table .desc-btn{
+  background: none;
+  padding: 0 0 0 4px;
+  border: none;
+}
+.list-table table .desc-btn:focus{
+  box-shadow: none;
+}
+.list-table table .desc-btn svg{
+  width: 20px;
+  height: 25px;
+}
+.list-table table .desc-btn svg path{
+  fill: #35A476;
+}
+.list-table table .status-stat {
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 1000px;
+  width: max-content;
+  display: flex;
+  align-items: center;
+}
+.list-table table .published-stat{
+  border: 1px solid #37C560;
+  background: #37c56033;
+}
+.list-table table .draft-stat{
+  border: 1px solid #817E7B;
+  background: #DEDEDE;
+}
+.list-table table .dot{
+  width: 6px;
+  height: 6px;
+  border-radius: 1000px;
+  margin-right: 6px;
+}
+.list-table table .green-dot{
+  background: #37C560;
+}
+.list-table table .gray-dot{
+  background: #817E7B;
+}
+
+.list-table table .action-btn {
+  border: none;
+  background: transparent;
+}
+
+.list-table table .action-btn:focus {
+  box-shadow: none;
+}
+
+.actions_icon {
+  height: 18px;
+  margin-top: 38px;
+  cursor: pointer;
+}
+
+.plus_icon {
+  font-size: 22px;
+  color: #35a476;
+}
+
+.list-table table tbody{
+  position: relative;
+}
+.list-table table td {
+  position: relative;
+}
+
+.list-table table .dropdown-menu{
+  padding: 0;
+  width: 120px;
+  left: -99px!important;
+  top: 5px!important;
+  min-width: max-content;
+  height: max-content;
+  transform: none!important;
+}
+.list-table table .dropdown-menu::before,
+.list-table table .dropdown-menu::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  z-index: 10;
+}
+
+.list-table table .dropdown-menu::before {
+  right: -9px;
+  border-left: 8px solid lightgray;
+}
+.list-table table .dropdown-menu::after {
+  right: -7px;
+  border-left: 7px solid white;
+}
+
+.list-table table .dropdown ul {
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.list-table table .dropdown ul button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.list-table table .dropdown ul button:hover {
+  background: #DBEDE6;
+}
+
+.list-table table .dropdown ul button img {
+  width: 13px;
+  margin-right: 3px;
+  font-size: 15px;
+}

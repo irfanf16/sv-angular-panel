@@ -1,0 +1,65 @@
+image: atlassian/default-image:2
+
+pipelines:
+  branches:
+    production:
+      - step:
+          name: Build and Push to Docker Hub
+          script:
+             - apt-get update
+             - apt-get install -y awscli
+
+             - echo "Fetching the Git commit hash"
+             - git_commit=$(git rev-parse --short HEAD)
+             - echo "${git_commit}"
+
+             - echo "Logging in to Docker Hub"
+             - echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+
+             - echo "Building Docker image"
+             - docker build -t staffviz/staffviz:latest .
+
+
+             - echo "Tagging Docker image"
+             - docker tag staffviz/staffviz:latest staffviz/staffviz:adminfrontend-${git_commit}
+
+             - echo "Pushing Docker image"
+             - echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+             - docker push staffviz/staffviz:adminfrontend-${git_commit}
+            # - docker push $DOCKERHUB_USERNAME/tth-web:lat
+             -  git clone git@bitbucket.org:crecentech/adminfrontend.git
+             -  git config --global user.name "ci.cd"
+             -  git config --global user.email "w.ahmad@crecentech.com"
+             -  cd adminfrontend/kustomization/overlay/production
+             -  sed -i "s/adminfrontend-.*/adminfrontend-${git_commit}/g" kustomization.yaml
+             -  git add .
+             -  git commit -m "update hash:${git_commit}"
+             -  git push 
+          services:
+            - docker
+      
+      - step:
+          name: Email notification
+          script:
+            - echo "Sending email notification..."
+          after-script:
+            - ALERT_TYPE="Successful"
+            - if [[ $BITBUCKET_EXIT_CODE -ne 0 ]]; then ALERT_TYPE="error" ; fi
+            - pipe: atlassian/email-notify:0.13.2
+              variables:
+                USERNAME: itops@staffviz.com
+                PASSWORD: Y/392555186629op
+                FROM: itops@staffviz.com
+                TO: m.ilyas@crecentech.com
+                HOST: smtp.office365.com 
+                PORT: 587
+                SUBJECT: '${ALERT_TYPE}:Deployment for ${BITBUCKET_BRANCH} Admin Frontend'
+                
+          services:
+            - docker
+      
+
+definitions:
+  services:
+    docker:
+      memory: 2048

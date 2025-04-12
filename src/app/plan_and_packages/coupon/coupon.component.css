@@ -1,0 +1,77 @@
+
+
+#offcanvasRight{
+  width: calc(100% - 50%);
+}
+.form-check-input {
+  margin-top: 0.70em;
+  border: var(--bs-border-width) solid #6c757d;
+}
+.form-control, .form-select {
+  border: var(--bs-border-width) solid #6c757d;
+}
+.form-switch {
+  padding-left: 1.8em;
+}
+.add_another_product{
+  color: #35a476; font-weight: 500; font-size: 12px;
+}
+
+.trigger .sp {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  transition: visibility 0s linear 0.33s, opacity 0.33s linear, height 5s linear;
+}
+
+.trigger .spTH {
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+  transition: visibility 0s linear 0.33s, opacity 1s linear, height 5s linear;
+}
+.dtime{
+  width: 39%;
+  height: 32px;
+  margin-left: 25px;
+}
+.timeHeight{
+  height: 32px;
+  margin-left: 24px;
+}
+.codeBlock{
+  width: fit-content; padding: 2px;
+}
+.codeBlock{
+  border: 1px solid #6c757d;
+  color: black;
+  font-size: 12px;
+}
+.codeBlock:hover {
+  color: white;
+  background-color: #35a476;
+  border-color: #35a476;
+}
+.searchDropdown{
+  margin-left: 24px;
+}
+.spanStuck{
+  height: 32px;
+  border: 1px solid #6c757d;
+}
+.ml{
+  margin-left: 24px;
+}
+.delete_product{
+  cursor: pointer;
+}
+.cfBlock{
+  border: 1px solid #6c757d;
+  margin: 10px;
+  border-radius: 5px;
+}
+.cf-block-delete{
+  position: absolute;
+  right: 0;
+  width: fit-content;
+}

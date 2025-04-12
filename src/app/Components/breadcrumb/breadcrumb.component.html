@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-start active_companies padding_left_right_0">
+  <div class="d-flex align-items-center c-icon-m">
+      <img  class="py-1" src="{{componentIcon}}" width="40" height="40" ngOptimizedImage/>
+  </div>
+  <div class="ml10 position-relative w-100">
+    <h6 *ngIf="componentIconFlag" class="unique_font_size">{{componentName}}</h6>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li *ngFor="let breadcrumb of breadcrumbs; let islast = last" class="breadcrumb-item"
+            [ngClass]="{ 'active': islast }">
+          <a routerLink="{{ breadcrumb.url }}">
+            {{ breadcrumb.label }}
+          </a>
+        </li>
+        <!--    <span *ngIf="!last"> / </span>-->
+        <!--    <li class="breadcrumb-item active" aria-current="page">Companies & Users</li>-->
+      </ol>
+    </nav>
+  </div>
+</div>

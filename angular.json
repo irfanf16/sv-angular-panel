@@ -1,0 +1,209 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "staffviz_admin_portal": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/staffviz_admin_portal",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/custom-theme.scss",
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css"
+            ],
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+
+                {
+                  "replace": "src/environments/environments.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+
+              ],
+              "outputHashing": "all",
+              "buildOptimizer": false,
+              "optimization": false,
+              "aot": false,
+              "vendorChunk": false,
+              "extractLicenses": false,
+              "sourceMap": false,
+              "namedChunks": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "100000mb",
+                  "maximumError": "100000mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "100000mb",
+                  "maximumError": "100000mb"
+                }
+              ]
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environments.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5000mb",
+                  "maximumError": "5000mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "5000mb",
+                  "maximumError": "5000mb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "qa": {
+              "sourceMap": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environments.ts",
+                  "with": "src/environments/environment.qa.ts"
+                }
+              ],
+              "buildOptimizer": false,
+              "optimization": false,
+              "aot": false,
+              "vendorChunk": false,
+              "extractLicenses": false,
+              "sourceMap": false,
+              "namedChunks": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500000mb",
+                  "maximumError": "500000mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "500000mb",
+                  "maximumError": "500000mb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environments.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ],
+              "buildOptimizer": false,
+              "optimization": false,
+              "aot": false,
+              "vendorChunk": false,
+              "extractLicenses": false,
+              "sourceMap": false,
+              "namedChunks": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5000mb",
+                  "maximumError": "5000mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "5000mb",
+                  "maximumError": "5000mb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "staffviz_admin_portal:build:production"
+            },
+            "dev": {
+              "buildTarget": "staffviz_admin_portal:build:dev"
+            },
+            "qa": {
+              "buildTarget": "staffviz_admin_portal:build:qa"
+            },
+            "staging": {
+              "buildTarget": "staffviz_admin_portal:build:staging"
+            },
+            "development": {
+              "buildTarget": "staffviz_admin_portal:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "staffviz_admin_portal:build",
+            "proxyConfig": "src/proxy.conf.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "fec33d25-6ff5-4d41-b8a1-afe2f34396eb"
+  }
+}

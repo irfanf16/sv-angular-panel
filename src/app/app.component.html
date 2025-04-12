@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="xxl col-auto col-md-3 col-xl-2" style="background-color: rgb(29, 60, 69) !important;padding: 0;" *ngIf="showMenu" >
+      <app-sidebar *ngIf="showMenu"></app-sidebar>
+    </div>
+    <div class="col py-3" [ngClass]="{'pt-0': showMenu}">
+      <!--    [ngClass]="containerClass"-->
+      <main class="page-content h-100" >
+        <header class="p-3 mb-3 border-bottom position-relative" *ngIf="showMenu">
+          <div class="container-fluid">
+            <div class="row align-items-center">
+              <div class="col-md-10">
+<!--                <div class="btn btn-outline-secondary mr-1 mb-1 sidebar-toggle-btn"-->
+<!--                     [ngClass]="{'toggle_left' : getSideBarState()}" (click)="toggleSidebar()">-->
+<!--                  <svg class="navvigator_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">-->
+<!--                    &lt;!&ndash;!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.&ndash;&gt;-->
+<!--                    <path-->
+<!--                      d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"/>-->
+<!--                  </svg>-->
+<!--                </div>-->
+                <app-breadcrumb></app-breadcrumb>
+              </div>
+              <div class="col-md-2">
+                <div class="dropdown text-end d-flex justify-content-end gap-3">
+                  <a class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle sign_out" id="dropdownUser1"
+                     data-bs-toggle="dropdown" aria-expanded="false">
+                    <img [src]="userImageUrl" alt="mdo" width="32" height="32" class="user_profile_img" id="user_profileImage" [fallback]="fallbackImageUrl" #userImg>
+                    <br>
+                  </a>
+                  <span class="user_name" id="userName" #userName></span>
+
+                  <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+                    <li><a class="dropdown-item" href="#">New project...</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item sign_out" (click)="Logout()">Sign out</a></li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </header>
+        <div class="container-fluid">
+          <router-outlet></router-outlet>
+        </div>
+      </main>
+    </div>
+  </div>
+
+
+</div>
+

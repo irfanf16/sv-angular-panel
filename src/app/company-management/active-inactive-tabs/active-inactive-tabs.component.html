@@ -1,0 +1,1027 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 tabs_padding">
+      <ul class="nav nav-tabs tabs_bg ul_padding">
+        <li class="nav-item">
+          <a class="nav-link  tabs_bg active_anchor active active_first_link" aria-current="page" id="home-c"
+             data-bs-toggle="tab"
+             data-bs-target="#activeCompanies" type="button" role="tab" aria-controls="home"
+             aria-selected="true">ACTIVE</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link tabs_bg active_anchor inactive_left_radius" id="home-iac" data-bs-toggle="tab"
+             data-bs-target="#inActiveCompanies" type="button" role="tab" aria-controls="home"
+             aria-selected="false">INACTIVE</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link tabs_bg active_anchor inactive_left_radius" id="invitedUsers" data-bs-toggle="tab"
+             data-bs-target="#invitedCompanies" type="button" role="tab" aria-controls="home"
+             aria-selected="false">INVITED</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link tabs_bg active_anchor inactive_left_radius" id="trialingUsers" data-bs-toggle="tab"
+             data-bs-target="#trialingCompanies" type="button" role="tab" aria-controls="home"
+             aria-selected="false">TRIAL</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="row">
+
+    <!--    <div class="d-flex justify-content-start c_p">-->
+    <div class="tab-content col-md-3 companies_section" id="myTabCompanies">
+
+      <div class="tab-pane fade show active position-relative" id="activeCompanies" role="tabpanel"
+           aria-labelledby="home-tab">
+
+        <div class=" mb-3 position-relative">
+
+          <div class="row">
+            <div class="col-md-12 d-flex justify-content-start align-items-center">
+              <div>
+                <img class="" ngSrc="assets/css/sprite_images/apartment.svg" width="40" height="40" priority/>
+              </div>
+              <div class="d-flex justify-content-start w-100 pad">
+                <span>Companies</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <!-- <div class="d-flex justify-content-start align-items-center mt-4"> -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <!-- Actual search box -->
+              <span class="search_icon_upper_highlight">Active Companies: {{ activeCompaniesLength }}</span>
+              <div class="form-group has-search position-relative">
+                <img class="search_c_icon" ngSrc="assets/css/sprite_images/search.svg" width="13" height="13" priority/>
+                <input type="text" class="form-control" [(ngModel)]="searchActiveCompanyQuery"
+                       (input)="onInputActiveCompaniesChange()" placeholder="Search by Keywords"/>
+              </div>
+            </div>
+            <!--          <div class="col-md-5 d-flex justify-content-end">-->
+            <!--            <button class="btn btn-primary btn-sm mt-4">+ Companies</button>-->
+            <!--          </div>-->
+            <!-- </div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-12 mt-3 ">
+              <ul class="list-group list-group-flush companies_scroll">
+                <ng-container *ngFor="let company of companies; let i = index">
+                  <li class="list-group-item" *ngIf="company.status === 0 && company.has_setup === 1">
+                    <div class="col-md-12 d-flex justify-content-start align-items-center">
+                      <div>
+
+                        <img
+                          ngSrc="{{ (company.logo != undefined && company.logo != '' && company.logo != null) ? liveImagesUrl+company.logo : 'assets/css/sprite_images/images/no-image-found.png'}}"
+                          [fallback]="fallbackImageUrl" alt="mdo" width="32" height="32" class="rounded-circle">
+                      </div>
+                      <div class="d-flex justify-content-start w-100 user_name">
+                        <!--  -->
+                        <a [class.active]="i === clickedIndex"
+                           (click)="companyUsers(i, company.id, company.title, company.total_users,company.first_name,company.last_name,company.logo, company.created_at, company.image)"
+                           [attr.data-company-id]="company.id">{{ company.title }}</a>
+                      </div>
+                      <div class="d-flex">
+
+                        @if (checkPermission(moduleIds.company_management, 'update')) {
+                          <div class="edit_svg" data-bs-toggle="offcanvas" data-bs-target="#editCompanyModel"
+                               aria-controls="editCompanyModel" (click)="editCompanySave(company)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20">
+                              <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                              <path
+                                d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"
+                                fill="#898989"/>
+                            </svg>
+                          </div>
+
+                          <toggle-button  (changed)="companyToggleButton($event, company.id)" id="comp-{{company.id}}"
+                                         [checked]="company.status === 0">
+                          </toggle-button>
+                        }
+
+
+                      </div>
+                      <div>
+                        <!-- Commenting following button. because its not looking good on the screen -->
+                        <a (click)="inviteOwner(company.id)" type="button" class="btn btn-secondary btn-sm d-none">Invite
+                          Owner</a>
+                      </div>
+
+                    </div>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="tab-pane fade" id="inActiveCompanies" role="tabpanel" aria-labelledby="home-tab">
+        <div class=" mb-3 position-relative">
+          <app-spinner-component *ngIf="showSpinner"></app-spinner-component>
+          <div class="row">
+            <div class="col-md-12 d-flex justify-content-start align-items-center">
+              <div>
+                <img class="" ngSrc="assets/css/sprite_images/apartment.svg" width="40" height="40" priority/>
+              </div>
+              <div class="d-flex justify-content-start w-100 pad">
+                <span>Companies</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <!-- <div class="d-flex justify-content-start align-items-center mt-4"> -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <!-- Actual search box -->
+              <span class="search_icon_upper_highlight">InActive Companies: {{ inActiveCompaniesLength }}</span>
+              <div class="form-group has-search position-relative">
+                <img class="search_c_icon" ngSrc="assets/css/sprite_images/search.svg" width="13" height="13" priority/>
+                <input type="text" [(ngModel)]="searchActiveCompanyQuery" (input)="onInputActiveCompaniesChange()"
+                       class="form-control" placeholder="Search by Keywords">
+              </div>
+            </div>
+            <!--          <div class="col-md-5 d-flex justify-content-end">-->
+            <!--            <button class="btn btn-primary btn-sm mt-4">+ Companies</button>-->
+            <!--          </div>-->
+            <!-- </div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-12 mt-3">
+              <ul class="list-group list-group-flush">
+                <ng-container *ngFor="let company of companies; let i = index">
+                  <li class="list-group-item" *ngIf="company.status === 1">
+                    <div class="col-md-12 d-flex justify-content-start align-items-center">
+                      <div>
+
+                        <img
+                          ngSrc="{{(company.logo != undefined && company.logo != '' && company.logo != null) ? liveImagesUrl+company.logo : 'assets/css/sprite_images/images/no-image-found.png'}}"
+                          alt="mdo" width="32" height="32" class="rounded-circle"
+                          [fallback]="fallbackImageUrl">
+                      </div>
+                      <div class="d-flex justify-content-start w-100 user_name">
+                        <!--  -->
+                        <a [class.active]="i === clickedIndex"
+                           (click)="companyUsers(i, company.id, company.title, company.total_users,company.first_name,company.last_name,company.logo, company.created_at, company.image)"
+                           [attr.data-company-id]="company.id">{{ company.title }}</a>
+                      </div>
+
+                      <div class="d-flex w-50">
+                        @if (checkPermission(moduleIds.company_management, 'update')) {
+                          <toggle-button (changed)="companyToggleButton($event, company.id)" id="comp-{{company.id}}"
+                                         [checked]="company.status === 0"></toggle-button>
+
+                          <div class="edit_svg pl-2" (click)="companyDelete(company)">
+                            <svg width="20" height="20" viewBox="0 0 52 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 11.8891C4.8 11.8891 3.6 11.8891 2.4 11.8891C1.3 11.8891 0.5 11.0891 0.5 10.0891C0.5 8.98906 1.3 8.28906 2.5 8.28906C18.3 8.28906 34.1 8.28906 49.9 8.28906C51 8.28906 51.8 9.08906 51.8 10.0891C51.8 11.1891 51 11.9891 49.9 11.9891C48.7 11.9891 47.6 11.9891 46.3 11.9891C46.3 12.2891 46.3 12.4891 46.3 12.7891C46.3 24.9891 46.3 37.0891 46.3 49.2891C46.3 52.5891 44.1 55.4891 40.7 55.9891C40.4 55.9891 40.1 56.0891 39.7 56.0891C30.6 56.0891 21.6 56.0891 12.5 56.0891C8.7 56.0891 5.9 53.2891 5.9 49.4891C5.9 37.2891 5.9 25.0891 5.9 12.8891C6 12.4891 6 12.1891 6 11.8891ZM9.7 11.8891C9.7 12.0891 9.7 12.2891 9.7 12.4891C9.7 24.6891 9.7 36.9891 9.7 49.1891C9.7 51.0891 10.9 52.1891 12.7 52.1891C21.6 52.1891 30.6 52.1891 39.5 52.1891C41.5 52.1891 42.7 51.0891 42.7 49.0891C42.7 36.8891 42.7 24.7891 42.7 12.5891C42.7 12.3891 42.7 12.1891 42.7 11.9891C31.6 11.8891 20.7 11.8891 9.7 11.8891Z" fill="#898989"/>
+                            <path d="M26.1 4.58867C23.7 4.58867 21.4 4.58867 19 4.58867C17.8 4.58867 17 3.78867 17 2.68867C17 1.58867 17.8 0.888672 19 0.888672C23.8 0.888672 28.5 0.888672 33.3 0.888672C34.5 0.888672 35.3 1.68867 35.3 2.78867C35.3 3.88867 34.5 4.58867 33.3 4.58867C30.9 4.58867 28.5 4.58867 26.1 4.58867Z" fill="#898989"/>
+                            <path d="M18.2002 32.0891C18.2002 28.4891 18.2002 24.7891 18.2002 21.1891C18.2002 20.0891 18.9002 19.2891 19.9002 19.2891C21.0002 19.2891 21.8002 19.9891 21.8002 21.0891C21.8002 21.4891 21.8002 21.8891 21.8002 22.2891C21.8002 29.1891 21.8002 36.0891 21.8002 42.9891C21.8002 43.8891 21.3002 44.5891 20.5002 44.8891C19.8002 45.0891 18.9002 44.8891 18.5002 44.1891C18.3002 43.7891 18.2002 43.2891 18.2002 42.8891C18.2002 39.1891 18.2002 35.5891 18.2002 32.0891Z" fill="#898989"/>
+                            <path d="M34.1 31.7887C34.1 35.3887 34.1 39.0887 34.1 42.6887C34.1 43.5887 33.6 44.1887 32.8 44.4887C32.1 44.6887 31.2 44.4887 30.8 43.7887C30.6 43.4887 30.5 43.0887 30.5 42.6887C30.5 35.3887 30.5 27.9887 30.5 20.6887C30.5 19.6887 31.3 18.8887 32.3 18.8887C33.3 18.8887 34.1 19.6887 34.2 20.6887C34.1 24.3887 34.1 28.0887 34.1 31.7887Z" fill="#898989"/>
+                            </svg>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  </li>
+                </ng-container>
+
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="tab-pane fade" id="invitedCompanies" role="tabpanel" aria-labelledby="home-tab">
+        <div class=" mb-3 position-relative">
+          <app-spinner-component *ngIf="showSpinner"></app-spinner-component>
+          <div class="row">
+            <div class="col-md-12 d-flex justify-content-start align-items-center">
+              <div>
+                <img class="" ngSrc="assets/css/sprite_images/apartment.svg" width="40" height="40" priority/>
+              </div>
+              <div class="d-flex justify-content-start w-100 pad">
+                <span>Companies</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <!-- <div class="d-flex justify-content-start align-items-center mt-4"> -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <!-- Actual search box -->
+              <span class="search_icon_upper_highlight">Invited Companies: {{ invitedCompaniesLength }}</span>
+              <div class="form-group has-search position-relative">
+                <img class="search_c_icon" ngSrc="assets/css/sprite_images/search.svg" width="13" height="13" priority/>
+                <input type="text" [(ngModel)]="searchActiveCompanyQuery" (input)="onInputActiveCompaniesChange()"
+                       class="form-control" placeholder="Search by Keywords">
+              </div>
+            </div>
+            <!--          <div class="col-md-5 d-flex justify-content-end">-->
+            <!--            <button class="btn btn-primary btn-sm mt-4">+ Companies</button>-->
+            <!--          </div>-->
+            <!-- </div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-12 mt-3">
+              <ul class="list-group list-group-flush companies_scroll">
+                <ng-container *ngFor="let company of companies; let i = index">
+                  <li class="list-group-item" *ngIf="company.has_setup === 0">
+                    <div class="col-md-12 d-flex justify-content-start align-items-center">
+                      <div>
+                        <img
+                          ngSrc="{{(company.logo != undefined && company.logo != '' && company.logo != null) ? liveImagesUrl+company.logo : 'assets/css/sprite_images/images/no-image-found.png'}}"
+                          [fallback]="fallbackImageUrl" alt="mdo" width="32" height="32" class="rounded-circle">
+                      </div>
+                      <div class="d-flex justify-content-start w-100 user_name">
+                        <a [class.active]="i === clickedIndex"
+                           (click)="companyUsers(i, company.id, company.title, company.total_users,company.first_name,company.last_name,company.logo, company.created_at, company.image)"
+                           [attr.data-company-id]="company.id">{{ company.title }}</a>
+                      </div>
+                      <div>
+                        @if (checkPermission(moduleIds.company_management, 'update')) {
+                          <!-- Commenting following button. because its not looking good on the screen -->
+                           <div class="d-flex">
+                              <a (click)="inviteOwner(company.id)" type="button" class="btn btn-sm invite_owner">Re Invite</a>
+                              <div class="delete-action" (click)="companyDelete(company)">
+                                <svg width="20" height="20" viewBox="0 0 52 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 11.8891C4.8 11.8891 3.6 11.8891 2.4 11.8891C1.3 11.8891 0.5 11.0891 0.5 10.0891C0.5 8.98906 1.3 8.28906 2.5 8.28906C18.3 8.28906 34.1 8.28906 49.9 8.28906C51 8.28906 51.8 9.08906 51.8 10.0891C51.8 11.1891 51 11.9891 49.9 11.9891C48.7 11.9891 47.6 11.9891 46.3 11.9891C46.3 12.2891 46.3 12.4891 46.3 12.7891C46.3 24.9891 46.3 37.0891 46.3 49.2891C46.3 52.5891 44.1 55.4891 40.7 55.9891C40.4 55.9891 40.1 56.0891 39.7 56.0891C30.6 56.0891 21.6 56.0891 12.5 56.0891C8.7 56.0891 5.9 53.2891 5.9 49.4891C5.9 37.2891 5.9 25.0891 5.9 12.8891C6 12.4891 6 12.1891 6 11.8891ZM9.7 11.8891C9.7 12.0891 9.7 12.2891 9.7 12.4891C9.7 24.6891 9.7 36.9891 9.7 49.1891C9.7 51.0891 10.9 52.1891 12.7 52.1891C21.6 52.1891 30.6 52.1891 39.5 52.1891C41.5 52.1891 42.7 51.0891 42.7 49.0891C42.7 36.8891 42.7 24.7891 42.7 12.5891C42.7 12.3891 42.7 12.1891 42.7 11.9891C31.6 11.8891 20.7 11.8891 9.7 11.8891Z" fill="#898989"/>
+                                <path d="M26.1 4.58867C23.7 4.58867 21.4 4.58867 19 4.58867C17.8 4.58867 17 3.78867 17 2.68867C17 1.58867 17.8 0.888672 19 0.888672C23.8 0.888672 28.5 0.888672 33.3 0.888672C34.5 0.888672 35.3 1.68867 35.3 2.78867C35.3 3.88867 34.5 4.58867 33.3 4.58867C30.9 4.58867 28.5 4.58867 26.1 4.58867Z" fill="#898989"/>
+                                <path d="M18.2002 32.0891C18.2002 28.4891 18.2002 24.7891 18.2002 21.1891C18.2002 20.0891 18.9002 19.2891 19.9002 19.2891C21.0002 19.2891 21.8002 19.9891 21.8002 21.0891C21.8002 21.4891 21.8002 21.8891 21.8002 22.2891C21.8002 29.1891 21.8002 36.0891 21.8002 42.9891C21.8002 43.8891 21.3002 44.5891 20.5002 44.8891C19.8002 45.0891 18.9002 44.8891 18.5002 44.1891C18.3002 43.7891 18.2002 43.2891 18.2002 42.8891C18.2002 39.1891 18.2002 35.5891 18.2002 32.0891Z" fill="#898989"/>
+                                <path d="M34.1 31.7887C34.1 35.3887 34.1 39.0887 34.1 42.6887C34.1 43.5887 33.6 44.1887 32.8 44.4887C32.1 44.6887 31.2 44.4887 30.8 43.7887C30.6 43.4887 30.5 43.0887 30.5 42.6887C30.5 35.3887 30.5 27.9887 30.5 20.6887C30.5 19.6887 31.3 18.8887 32.3 18.8887C33.3 18.8887 34.1 19.6887 34.2 20.6887C34.1 24.3887 34.1 28.0887 34.1 31.7887Z" fill="#898989"/>
+                                </svg>
+                              </div>
+                            </div>
+                        }
+                      </div>
+
+                    </div>
+                  </li>
+                </ng-container>
+
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--  START TRIALING COMPANIES   -->
+      <div class="tab-pane fade" id="trialingCompanies" role="tabpanel" aria-labelledby="home-tab">
+        <div class=" mb-3 position-relative">
+          <app-spinner-component *ngIf="showSpinner"></app-spinner-component>
+          <div class="row">
+            <div class="col-md-12 d-flex justify-content-start align-items-center">
+              <div>
+                <img class="" ngSrc="assets/css/sprite_images/apartment.svg" width="40" height="40" priority/>
+              </div>
+              <div class="d-flex justify-content-start w-100 pad">
+                <span>Companies</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <!-- <div class="d-flex justify-content-start align-items-center mt-4"> -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <!-- Actual search box -->
+              <span class="search_icon_upper_highlight">Invited Companies: {{ invitedCompaniesLength }}</span>
+              <div class="form-group has-search position-relative">
+                <img class="search_c_icon" ngSrc="assets/css/sprite_images/search.svg" width="13" height="13" priority/>
+                <input type="text" [(ngModel)]="searchActiveCompanyQuery" (input)="onInputActiveCompaniesChange()"
+                       class="form-control" placeholder="Search by Keywords">
+              </div>
+            </div>
+            <!--          <div class="col-md-5 d-flex justify-content-end">-->
+            <!--            <button class="btn btn-primary btn-sm mt-4">+ Companies</button>-->
+            <!--          </div>-->
+            <!-- </div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-12 mt-3">
+              <ul class="list-group list-group-flush companies_scroll">
+                <ng-container *ngFor="let company of companies; let i = index">
+                  <li class="list-group-item" *ngIf="company.plan_staus === 'trialing'">
+                    <div class="col-md-12 d-flex justify-content-start align-items-center">
+                      <div>
+                        <img
+                          ngSrc="{{(company.logo != undefined && company.logo != '' && company.logo != null) ? liveImagesUrl+company.logo : 'assets/css/sprite_images/images/no-image-found.png'}}"
+                          [fallback]="fallbackImageUrl" alt="mdo" width="32" height="32" class="rounded-circle">
+                      </div>
+                      <div class="d-flex justify-content-start w-100 user_name">
+                        <a [class.active]="i === clickedIndex"
+                           (click)="companyUsers(i, company.id, company.title, company.total_users,company.first_name,company.last_name,company.logo, company.created_at, company.image)"
+                           [attr.data-company-id]="company.id">{{ company.title }}</a>
+                      </div>
+                      <div>
+                        <!-- Commenting following button. because its not looking good on the screen -->
+                        <!--                        <a (click)="inviteOwner(company.id)" type="button" class="btn btn-sm invite_owner">Re Invite</a>-->
+                      </div>
+
+                    </div>
+                  </li>
+                </ng-container>
+
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--  END TRIALING COMPANIES   -->
+    </div>
+
+    <div class="col-md-9 companies_right_section_padding mb-3">
+      <div class="row tabs_under_under_active_inactive">
+        <div class="col-lg-4 pb-lg-0 pb-3 col-6">
+          <div class="d-flex justify-content-start w_with_content">
+            <div class="d-flex align-items-center">
+              <img
+                src="{{companyImage !== '' ?  liveImagesUrl + companyImage : 'assets/css/sprite_images/images/no-image-found.png'}}"
+                (error)="handleImageError()" width="40" height="40" priority/>
+            </div>
+            <div class="c_name_status" data-bs-toggle="tooltip" data-bs-placement="right" title="{{company_title}}">
+              <h6 class="unique_font_size m-0">{{ company_title | slice:0:20 }}</h6>
+              <span class="company_status">---</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-5 col-6 p-lg-0 pb-3 order-md-2 order-3 company-stat-box">
+          <div class="d-flex justify-content-start owner_boundry_right w_with_content">
+            <div class="d-flex align-items-center">
+              <img class=""
+                   src="{{ownerImage !== '' ? liveImagesUrl + ownerImage : 'assets/css/sprite_images/images/no-image-found.png'}}"
+                   [fallback]="fallbackImageUrl" width="40" height="40" priority/>
+            </div>
+            <div class="c_name_status position-relative">
+              <div class="d-flex">
+                <h6 class="owner_image m-0">{{ ownerName }}</h6>
+                <span class="badge owner_status">Owner</span>
+              </div>
+
+              <span class="owner_role_status">---</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-5 col-6 p-md-0 pb-3 order-md-3 order-4 company-stat-box">
+          <div class="d-flex justify-content-start created_by_boundry_right_md w_with_content">
+            <div class="d-flex align-items-center">
+              <img class="" ngSrc="assets/css/sprite_images/images/no-image-found.png" [fallback]="fallbackImageUrl"
+                   width="40" height="40" priority/>
+            </div>
+            <div class="c_name_status position-relative">
+              <div class="d-flex">
+                <h6 class="owner_image m-0">{{ ownerName }}</h6>
+                <span class="badge owner_status creator_status_bg">Created By</span>
+              </div>
+
+              <span class="owner_role_status">---</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-6 p-md-0 pb-3 order-md-4 order-2">
+          <div class="d-flex justify-content-end w_with_comp_id">
+            <div class="c_name_status">
+              <h6 class="unique_font_size c_id m-0">Company ID</h6>
+              <span class="company_status">#{{ company_id }}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row mt-4">
+        <div class="col-md col-6 pr-0 mb-3">
+          <div class="d-flex justify-content-start trials_cards_with">
+            <div class="d-flex align-items-center">
+              <img class="" ngSrc="assets/css/sprite_images/createdAt.svg" width="25" height="25" priority/>
+            </div>
+            <div class="c_name_status position-relative w-100">
+              <div class="d-flex justify-content-start">
+                <h6 class="owner_image m-0">Created At</h6>
+              </div>
+              <span class="owner_role_status w-100">{{ companyCreatedAt !== '' ? companyCreatedAt : '---' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md col-6 pr-0 mb-3">
+          <div class="d-flex justify-content-start trials_cards_with">
+            <div class="d-flex align-items-center">
+              <img class="" ngSrc="assets/css/sprite_images/trial_started_at.svg" width="25" height="25" priority/>
+            </div>
+            <div class="c_name_status position-relative w-100">
+              <div class="d-flex justify-content-start">
+                <h6 class="owner_image m-0">Trial Started At</h6>
+              </div>
+              <span
+                class="owner_role_status w-100">{{ subscriptionDetails.trial_start_date !== null ? subscriptionDetails.trial_start_date : '---' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md col-6 pr-0 mb-3">
+          <div class="d-flex justify-content-start trials_cards_with">
+            <div class="d-flex align-items-center">
+              <img class="" ngSrc="assets/css/sprite_images/trial_end_at.svg" width="25" height="25" priority/>
+            </div>
+            <div class="c_name_status position-relative w-100">
+              <div class="d-flex justify-content-start">
+                <h6 class="owner_image m-0">Trial Ended At</h6>
+              </div>
+              <span
+                class="owner_role_status w-100">{{ subscriptionDetails.trial_end_date !== null ? subscriptionDetails.trial_end_date : '---' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md col-6 pr-0 mb-3">
+          <div class="d-flex justify-content-start trials_cards_with">
+            <div class="d-flex align-items-center">
+              <img class="" ngSrc="assets/css/sprite_images/plan_subscriptionDate.svg" width="25" height="25"
+                   priority/>
+            </div>
+            <div class="c_name_status position-relative w-100">
+              <div class="d-flex justify-content-start">
+                <h6 class="owner_image m-0">Plan Subscription Date
+                </h6>
+              </div>
+              <span
+                class="owner_role_status w-100">{{ subscriptionDetails.plan_subscription_date !== null ? subscriptionDetails.plan_subscription_date : '---' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md col-6 pr-0 mb-3">
+          <div class="d-flex justify-content-start trials_cards_with">
+            <div class="d-flex align-items-center">
+              <img class="" ngSrc="assets/css/sprite_images/alarm_on.svg" width="25" height="25" priority/>
+            </div>
+            <div class="c_name_status position-relative w-100">
+              <div class="d-flex justify-content-start">
+                <h6 class="owner_image m-0">Plan</h6>
+              </div>
+              <span class="owner_role_status w-100">---</span>
+            </div>
+          </div>
+        </div>
+        <div class="d-md-block d-none w-100"></div>
+        <div class="col-md col-6 pr-0 mb-3">
+          <div class="d-flex justify-content-start trials_cards_with">
+            <div class="d-flex align-items-center">
+              <img class="" ngSrc="assets/css/sprite_images/total_amount_paid.svg" width="25" height="25" priority/>
+            </div>
+            <div class="c_name_status position-relative w-100">
+              <div class="d-flex justify-content-start">
+                <h6 class="owner_image m-0">Total Amount Paid</h6>
+              </div>
+              <span
+                class="owner_role_status w-100">{{ subscriptionDetails.amount_paid !== null ? subscriptionDetails.amount_paid : '---' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md col-6 pr-0 mb-3">
+          <div class="d-flex justify-content-start trials_cards_with">
+            <div class="d-flex align-items-center">
+              <img class="" ngSrc="assets/css/sprite_images/add_card.svg" width="25" height="25" priority/>
+            </div>
+            <div class="c_name_status position-relative w-100">
+              <div class="d-flex justify-content-start">
+                <h6 class="owner_image m-0">Last Invoice Amount</h6>
+              </div>
+              <span
+                class="owner_role_status w-100">{{ subscriptionDetails.last_invoice_amount !== null ? subscriptionDetails.last_invoice_amount : '---' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md col-6 pr-0 mb-3">
+          <div class="d-flex justify-content-start trials_cards_with">
+            <div class="d-flex align-items-center">
+              <img class="" ngSrc="assets/css/sprite_images/createdAt.svg" width="25" height="25" priority/>
+            </div>
+            <div class="c_name_status position-relative w-100">
+              <div class="d-flex justify-content-start">
+                <h6 class="owner_image m-0">Last Payment Date</h6>
+              </div>
+              <span
+                class="owner_role_status w-100">{{ subscriptionDetails.last_payment_date !== null ? subscriptionDetails.last_payment_date : '---' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md col-6 pr-0 mb-3">
+          <div class="d-flex justify-content-start trials_cards_with">
+            <div class="d-flex align-items-center">
+              <img class="" ngSrc="assets/css/sprite_images/current_invoice_amount.svg" width="25" height="25"
+                   priority/>
+            </div>
+            <div class="c_name_status position-relative w-100">
+              <div class="d-flex justify-content-start">
+                <h6 class="owner_image m-0">Current Invoice Amount</h6>
+              </div>
+              <span
+                class="owner_role_status w-100">{{ subscriptionDetails.current_invoice_payment_amount !== null ? subscriptionDetails.current_invoice_payment_amount : '---' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md col-6 pr-0 mb-3">
+          <div class="d-flex justify-content-start trials_cards_with">
+            <div class="d-flex align-items-center">
+              <img class="" ngSrc="assets/css/sprite_images/createdAt.svg" width="25" height="25" priority/>
+            </div>
+            <div class="c_name_status position-relative w-100">
+              <div class="d-flex justify-content-start">
+                <h6 class="owner_image m-0">Payment Due Date</h6>
+              </div>
+              <span
+                class="owner_role_status w-100">{{ subscriptionDetails.current_invoice_payment_due_date !== null ? subscriptionDetails.current_invoice_payment_due_date : '---' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row m-0 c_u_height">
+        <div class="col-md-12 position-relative table_details">
+          <div class="rectangle d-inline btn-bg-color">
+
+          </div>
+
+          <div class="col-md-12 users_tab">
+            Users
+          </div>
+          <div class="row align-items-center mb-4 mt-3">
+            <div class="col-md-3">
+              <ul class="nav nav-tabs ul_padding border-0">
+                <li class="nav-item user_tab_li" (click)="activeUsers()">
+                  <a class="nav-link user_anchor active user_left_anchor active_users_list" id="home-tab"
+                     data-bs-toggle="tab"
+                     data-bs-target="#home" type="button" role="tab" aria-controls="home"
+                     aria-selected="true">ACTIVE</a>
+                </li>
+                <li class="nav-item user_tab_li" (click)="inActiveUsers()">
+                  <a class="nav-link user_anchor user_right_anchor" id="in-active-users" data-bs-toggle="tab"
+                     data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">INACTIVE</a>
+                </li>
+
+                <!-- <li class="nav-item user_tab_li" (click)="inVitedUsers()">
+                  <a class="nav-link user_anchor user_right_anchor" id="in-active-users" data-bs-toggle="tab"
+                     data-bs-target="#invited" type="button" role="tab" aria-controls="invited" aria-selected="false">Invited</a>
+                </li> -->
+              </ul>
+            </div>
+
+            <div class="col-md-4 d-flex justify-content-center align-items-center p-md-0 pt-2 pb-4">
+              <div class="form-group has-search w-100 position-relative h-100">
+                <img class="search_icon" ngSrc="assets/css/sprite_images/search.svg" width="13" height="13" priority/>
+                <input type="text" [(ngModel)]="searchQuery" (input)="onInputChange()" class="form-control"
+                       placeholder="Search by Keywords">
+              </div>
+            </div>
+            <div class="col-md-5 px-md-4 px-0">
+              <div class="row m-0">
+                <div class="col-6">
+                  <div class="d-flex justify-content-start trials_cards_with">
+                    <div class="c_name_status position-relative w-100">
+                      <div class="d-flex justify-content-start">
+                        <h6 class="owner_image m-0">Total Users: {{ companyTotalUsers }}</h6>
+                      </div>
+                      <div class="d-flex justify-content-start">
+                        <h6 class="owner_image m-0">{{ userTextAccordingToTabView }} users: {{ total }}</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="d-flex justify-content-start trials_cards_with">
+                    <div class="c_name_status position-relative w-100">
+                      <div class="d-flex justify-content-start">
+                        <h6 class="owner_image m-0">Billable Users: ---</h6>
+                      </div>
+                      <div class="d-flex justify-content-start">
+                        <h6 class="owner_image m-0">Non-Billable: ---</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div class="row m-0">
+
+                <div class="col-md-12 px-0 users_table user_table_scroll">
+                  <table class="table">
+
+                    <thead>
+                    <tr>
+                      <th scope="col" class="th_1">Sr#</th>
+                      <th scope="col" class="th_2">User</th>
+                      <th scope="col" class="th_3">Profile</th>
+                      <th scope="col" class="th_4" width="20%">Email</th>
+                      <th scope="col" class="th_5">Desktop</th>
+                      <th scope="col" class="th_6">Invited At</th>
+                      <th scope="col" class="th_7">Accepted At</th>
+                      <th scope="col" class="th_8">Last Active at</th>
+
+                      <th scope="col" class="th_9">Billable</th>
+                      <th scope="col" class="th_10">Status</th>
+                      <th scope="col" class="th_11">Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="position-relative tbody_height">
+                    <app-spinner-component *ngIf="paginateSpinner"></app-spinner-component>
+                    <tr *ngIf="applyFilterImage">
+                      <td colspan="100" class="text-center align-middle">
+                        <img class="" ngSrc="assets/css/sprite_images/apply_filter.svg" width="200" height="200"
+                             priority/>
+                      </td>
+
+
+                    </tr>
+                    <tr *ngIf="noDataFound">
+                      <td colspan="100" class="text-center align-middle">
+                        <img class="" ngSrc="assets/css/sprite_images/no_data_found.svg" width="200" height="200"
+                             priority/>
+                      </td>
+                    </tr>
+                    <ng-container
+                      *ngFor="let user of (company_users$ | async) ?? []  |  paginate: { id: 'server', itemsPerPage: perPage, currentPage: p, totalItems: total}; let i = index">
+                      <tr *ngIf="user.status === 'active'">
+                        <td>{{ (p - 1) * perPage + i + 1 }}</td>
+                        <td>
+                          <div class="col-md-12 d-flex justify-content-start align-items-center">
+                            <div>
+                              <img
+                                [src]="(user.image != undefined && user.image != '' && user.image != null) ? (liveImagesUrl + user.image) : 'assets/css/sprite_images/images/no-image-found.png'"
+                                [fallback]="fallbackImageUrl"
+                                alt="mdo" width="32" height="32"
+                                class="rounded-circle">
+                            </div>
+                            <div class="w-100">
+                              <div class="user_name">{{ user.first_name }} {{ user.last_name }}</div>
+                              <div class="user_role_style">{{ user.profile_type }}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>{{ user.profile_name }}</td>
+                        <td>{{ user.email }}</td>
+
+                        <td>{{ user.client_app_version }}</td>
+                        <td>11-06-2022</td>
+                        <td>11-06-2022</td>
+                        <td>11-06-2022</td>
+
+                        <td>Yes</td>
+                        <td>
+                          <!-- (changed)="checked=$event" -->
+                          <div class="toggle_table ">
+                            @if (checkPermission(moduleIds.users, 'update')) {
+                              <toggle-button (changed)="userToggleButton($event, user.user_id)"
+                                             id="comp-{{user.user_id}}"
+                                             [checked]="user.status === 'active'">
+                              </toggle-button>
+                            }
+                          </div>
+                        </td>
+                        <td>
+                          <a class="btn_h position-relative disabled-sections">
+                            <img class="" ngSrc="assets/css/sprite_images/ellipsis.svg" width="25" height="25"
+                                 priority/>
+                            <div class="title">
+                              <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                  <div class="col-md-12 d-flex justify-content-start align-items-center">
+                                    <div class="d-flex justify-content-start w-100 user_name">
+                                      <span>Delete</span>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li class="list-group-item">
+                                  <div class="col-md-12 d-flex justify-content-start align-items-center">
+                                    <div class="d-flex justify-content-start w-100 user_name">
+                                      <span>Edit</span>
+                                    </div>
+                                  </div>
+                                </li>
+
+                              </ul>
+                            </div>
+                          </a>
+                        </td>
+
+                      </tr>
+                    </ng-container>
+                    </tbody>
+                  </table>
+
+                </div>
+                <div class="has-text-centered position-absolute bottom-0">
+                  <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+                  <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="in-active-users">
+              <div class="row m-0">
+                <div class="col-md-12 px-0 users_table user_table_scroll">
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th scope="col" class="th_1">Sr#</th>
+                      <th scope="col" class="th_2">User</th>
+                      <th scope="col" class="th_3">Profile</th>
+                      <th scope="col" class="th_4">Email</th>
+                      <th scope="col" class="th_5">Desktop</th>
+                      <th scope="col" class="th_6">Invited At</th>
+                      <th scope="col" class="th_7">Accepted At</th>
+                      <th scope="col" class="th_8">Last Active at</th>
+                      <th scope="col" class="th_9">Billable</th>
+                      <th scope="col" class="th_10">Status</th>
+                      <th scope="col" class="th_11">Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="position-relative tbody_height">
+                    <app-spinner-component *ngIf="paginateSpinner"></app-spinner-component>
+
+                    <tr *ngIf="noDataFoundInActiveTab">
+                      <td colspan="100" class="text-center align-middle">
+                        <img class="" ngSrc="assets/css/sprite_images/no_data_found.svg" width="200" height="200"
+                             priority/>
+                      </td>
+                    </tr>
+                    <ng-container
+                      *ngFor="let user of (company_inActiveUsers$ | async) ?? []  |  paginate: { id: 'user_table_inactive', itemsPerPage: perPage, currentPage: p2, totalItems: inActive_users}; let i = index">
+                      <tr *ngIf="user.status === 'deactive'">
+                        <td>{{ (p2 - 1) * perPage + i + 1 }}</td>
+                        <td>
+                          <div class="col-md-12 d-flex justify-content-start align-items-center">
+                            <div>
+                              <img
+                                [src]="(user.image != undefined && user.image != '' && user.image == null) ? liveImagesUrl + user.image : 'assets/css/sprite_images/images/no-image-found.png'"
+                                [fallback]="fallbackImageUrl"
+                                alt="mdo" width="32" height="32"
+                                class="rounded-circle">
+
+                            </div>
+                            <div class="w-100">
+                              <div class="user_name">{{ user.first_name }} {{ user.last_name }}</div>
+                              <div class="user_role_style">{{ user.profile_type }}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>{{ user.profile_name }}</td>
+                        <td>{{ user.email }}</td>
+
+                        <td>{{ user.client_app_version }}</td>
+                        <td>11-06-2022</td>
+                        <td>11-06-2022</td>
+                        <td>11-06-2022</td>
+
+                        <td>Yes</td>
+                        <td>
+                          <!-- (changed)="checked=$event" -->
+                          <div class="toggle_table">
+                            @if (checkPermission(moduleIds.users, 'update')) {
+                              <toggle-button (changed)="userToggleButton($event, user.user_id)"
+                                             id="comp-{{user.user_id}}"
+                                             [checked]="user.status === 'active'">
+                              </toggle-button>
+                            }
+                          </div>
+                        </td>
+                        <td>
+                          <a class="btn_h position-relative">
+                            <img class="" ngSrc="assets/css/sprite_images/ellipsis.svg" width="25" height="25"
+                                 priority/>
+                            <div class="title">
+                              <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                  <div class="col-md-12 d-flex justify-content-start align-items-center">
+                                    <div class="d-flex justify-content-start w-100 user_name">
+                                      <span>Delete</span>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li class="list-group-item">
+                                  <div class="col-md-12 d-flex justify-content-start align-items-center">
+                                    <div class="d-flex justify-content-start w-100 user_name">
+                                      <span>Edit</span>
+                                    </div>
+                                  </div>
+                                </li>
+
+                              </ul>
+                            </div>
+                          </a>
+                        </td>
+
+                      </tr>
+                    </ng-container>
+                    </tbody>
+                  </table>
+
+                </div>
+                <div class="has-text-centered position-absolute bottom-0">
+                  <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+                  <pagination-controls (pageChange)="getPage($event)" id="user_table_inactive"></pagination-controls>
+                </div>
+              </div>
+            </div>
+
+            <!--              <div class="tab-pane fade" id="invited" role="tabpanel" aria-labelledby="invited-users">-->
+            <!--                <div class="row m-0">-->
+            <!--                  <div class="col-md-12 px-0 users_table user_table_scroll">-->
+            <!--                    <table class="table">-->
+            <!--                      <thead>-->
+            <!--                      <tr>-->
+            <!--                        <th scope="col" class="th_1">Sr No.</th>-->
+            <!--                        <th scope="col" class="th_2">User</th>-->
+            <!--                        <th scope="col" class="th_3">Profile</th>-->
+            <!--                        <th scope="col" class="th_4">Email</th>-->
+            <!--                        <th scope="col" class="th_5">App Version</th>-->
+            <!--                        <th scope="col" class="th_6">Invited At</th>-->
+            <!--                        <th scope="col" class="th_7">Accepted At</th>-->
+            <!--                        <th scope="col" class="th_8">Last Active at</th>-->
+
+            <!--                        <th scope="col" class="th_9">Billable</th>-->
+            <!--                        <th scope="col" class="th_10">Status</th>-->
+            <!--                        <th scope="col" class="th_11">Actions</th>-->
+            <!--                      </tr>-->
+            <!--                      </thead>-->
+
+            <!--                      <tbody class="position-relative tbody_height">-->
+            <!--                      <app-spinner-component *ngIf="paginateSpinner"></app-spinner-component>-->
+
+            <!--                      <tr *ngIf="noDataFoundInActiveTab">-->
+            <!--                        <td colspan="100" class="text-center align-middle">-->
+            <!--                          <img class="" ngSrc="assets/css/sprite_images/no_data_found.svg" width="200" height="200"-->
+            <!--                               priority/>-->
+            <!--                        </td>-->
+            <!--                      </tr>-->
+            <!--                      <ng-container-->
+            <!--                        *ngFor="let user of (company_inActiveUsers$ | async) ?? []  |  paginate: { id: 'user_table_inactive', itemsPerPage: perPage, currentPage: p2, totalItems: inActive_users}; let i = index">-->
+            <!--                        <tr *ngIf="user.status === 'deactive'">-->
+            <!--                          <td>{{(p2 - 1) * perPage + i + 1}}</td>-->
+            <!--                          <td>-->
+            <!--                            <div class="col-md-12 d-flex justify-content-start align-items-center">-->
+            <!--                              <div>-->
+            <!--                                <img ngSrc="{{(user.image != undefined && user.image != '' && user.image != null) ? liveImagesUrl + user.image : 'assets/css/sprite_images/images/no-image-found.png'}}" alt="mdo" width="32" height="32"-->
+            <!--                                     class="rounded-circle" (error)="handleImageError()">-->
+            <!--                              </div>-->
+            <!--                              <div class="w-100">-->
+            <!--                                <div class="user_name">{{user.first_name}} {{user.last_name}} </div>-->
+            <!--                                <div class="user_role_style">{{user.profile_type}} </div>-->
+            <!--                              </div>-->
+            <!--                            </div>-->
+            <!--                          </td>-->
+            <!--                          <td>{{user.profile_name}}</td>-->
+            <!--                          <td>{{user.email}}</td>-->
+
+            <!--                          <td>{{user.client_app_version}}</td>-->
+            <!--                          <td>11-06-2022</td>-->
+            <!--                          <td>11-06-2022</td>-->
+            <!--                          <td>11-06-2022</td>-->
+
+            <!--                          <td>Yes</td>-->
+            <!--                          <td>-->
+            <!--                            &lt;!&ndash; (changed)="checked=$event" &ndash;&gt;-->
+            <!--                            <div class="toggle_table">-->
+            <!--                              <toggle-button (changed)="userToggleButton($event, user.user_id)"-->
+            <!--                                             id="comp-{{user.user_id}}"-->
+            <!--                                             [checked]="user.status === 'active'">-->
+            <!--                              </toggle-button>-->
+            <!--                            </div>-->
+            <!--                          </td>-->
+            <!--                          <td>-->
+            <!--                            <a class="btn_h position-relative">-->
+            <!--                              <img class="" ngSrc="assets/css/sprite_images/ellipsis.svg" width="25" height="25"-->
+            <!--                                   priority/>-->
+            <!--                              <div class="title">-->
+            <!--                                <ul class="list-group list-group-flush">-->
+            <!--                                  <li class="list-group-item">-->
+            <!--                                    <div class="col-md-12 d-flex justify-content-start align-items-center">-->
+            <!--                                      <div class="d-flex justify-content-start w-100 user_name">-->
+            <!--                                        <span>Delete</span>-->
+            <!--                                      </div>-->
+            <!--                                    </div>-->
+            <!--                                  </li>-->
+            <!--                                  <li class="list-group-item">-->
+            <!--                                    <div class="col-md-12 d-flex justify-content-start align-items-center">-->
+            <!--                                      <div class="d-flex justify-content-start w-100 user_name">-->
+            <!--                                        <span>Edit</span>-->
+            <!--                                      </div>-->
+            <!--                                    </div>-->
+            <!--                                  </li>-->
+
+            <!--                                </ul>-->
+            <!--                              </div>-->
+            <!--                            </a>-->
+            <!--                          </td>-->
+
+            <!--                        </tr>-->
+            <!--                      </ng-container>-->
+            <!--                      </tbody>-->
+            <!--                    </table>-->
+
+            <!--                  </div>-->
+            <!--                  <div class="has-text-centered position-absolute bottom-0">-->
+            <!--                    <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>-->
+            <!--                    <pagination-controls (pageChange)="getPage($event)" id="user_table_inactive"></pagination-controls>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--              </div>-->
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- START Edit  Company -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="editCompanyModel" aria-labelledby="editCompanyModel">
+  <app-spinner-component *ngIf="updateCompanyFlag"></app-spinner-component>
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Edit Company</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"
+            #closeBtn></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="row">
+      <form [formGroup]="editCompanyForm">
+        <div class="row">
+          <div class="col-md-12 d-flex align-items-center">
+            <label class="btn btn_custom ch_file" (click)="filePicker.click()">Choose a file</label>
+            <div *ngIf="imageUrl" class=" position-relative img_div">
+              <img [src]="imageUrl" height="100" width="100"
+                   class="rounded  img-thumbnail object-fit-contain custom_img mx-2" [fallback]="fallbackImageUrl">
+              <br/>
+              <button type="button" class="btn-close btn_close" aria-label="Close" (click)="clearImage()"></button>
+            </div>
+          </div>
+
+          <input class="form-control d-none" type="file" formControlName="image"
+                 [ngClass]="{'input_file': (imageUrl != '')}" (change)="onFileChange($event)" id="images"
+                 accept="image/*" #filePicker>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" formControlName="title" value="" aria-describedby="title"
+                   [ngClass]="{
+                      'valid-input': editCompanyForm.get('title')?.valid,
+                      'invalid-input': editCompanyForm.get('title')?.invalid && (showErrors),
+                      'untouched-input': editCompanyForm.get('title')?.untouched  && !showErrors
+                    }"
+            >
+            <div *ngIf="showErrors && formControl['title'].errors" class="text-danger">
+              <div *ngIf="formControl['title'].errors?.['required']">Title is required.</div>
+            </div>
+            <!--            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="gracePeriod" class="form-label">Grace Period</label>
+            <input type="text" class="form-control" id="gracePeriod" value="" formControlName="gracePeriod"
+                   [ngClass]="{
+                      'valid-input': editCompanyForm.get('gracePeriod')?.valid,
+                      'invalid-input': editCompanyForm.get('gracePeriod')?.invalid && (showErrors),
+                      'untouched-input': editCompanyForm.get('gracePeriod')?.untouched  && !showErrors
+                    }"
+            >
+            <div *ngIf="showErrors && formControl['gracePeriod'].errors" class="text-danger">
+              <div *ngIf="formControl['gracePeriod'].errors?.['required']">Grace Period is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row position-relative mt-4">
+          <div class="col-md-6 mb-3">
+            <label for="payment_status" class="form-label">Payment Status</label>
+            <select class="form-select " id="payment_status" formControlName="payment_status"
+                    [ngClass]="{
+                      'valid-input': editCompanyForm.get('payment_status')?.valid,
+                      'invalid-input': editCompanyForm.get('payment_status')?.invalid && (showErrors),
+                      'untouched-input': editCompanyForm.get('payment_status')?.untouched  && !showErrors
+                    }"
+            >
+
+              <option value="" disabled selected hidden="hidden">Payment Status</option>
+              <option value="1">Paid</option>
+              <option value="0">Due</option>
+            </select>
+            <div *ngIf="showErrors && formControl['payment_status'].errors" class="text-danger">
+              <div *ngIf="formControl['payment_status'].errors?.['required']">Payment Status is required.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button type="submit" class="btn btn_custom float-end" (click)="updateCompanyDetail()">Update</button>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</div>
+<!--  END Edit  Company -->
+

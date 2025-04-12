@@ -1,0 +1,128 @@
+<div [formGroup]="formGroup">
+  <div [formGroupName]="'modules'">
+    <ng-container *ngFor="let module of subModules; let i = index;">
+      <div [formGroupName]="(module.title.replaceAll(' ','_')).toLowerCase()" >
+        <div class="single-module-parent-box mt-3"   >
+          <div class="d-flex parent-module-box align-items-center">
+            <label class="custom-checkbox d-flex align-items-center">
+              <input type="checkbox" value="{{module.id}}" [formControlName]="(module.title.replaceAll(' ','_')).toLowerCase()" (change)="onCheckboxChange($event, module.title.replaceAll(' ','_').toLowerCase(), '','','')">
+              <span class="checkmark"></span>
+              <span class="title"> {{module.title !== '' ? capitalizeFirstLetterOfEveryWord(module.title) : '' }}</span>
+              <button *ngIf="module.children && module.children.length > 0" type="button" class="collapse-btn" data-bs-toggle="collapse" [attr.data-bs-target]="'#module'+module.id"
+                      aria-expanded="false" aria-controls="collapseExample">
+                <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 4.43384L0 0.433838H8L4 4.43384Z" fill="#1C1B1F"/>
+                </svg>
+              </button>
+            </label>
+          </div>
+
+        </div>
+
+        <ng-container *ngIf="module.children && module.children.length > 0" >
+          <ng-container *ngFor="let subModule of module.children; let j = index;">
+              <div [formGroupName]="subModule.title.replaceAll(' ','_').toLowerCase()">
+                <div class="single-module-parent-box mt-3 mleft">
+                  <div class="collapse child-module-list" [id]="'module'+subModule.parent_module_id">
+                    <div class="module-checkbox">
+                      <label class="custom-checkbox d-flex align-items-center">
+                        <input type="checkbox" value="{{subModule.id}}" [formControlName]="subModule.title.replaceAll(' ','_').toLowerCase()" (change)="onCheckboxChange($event, module.title.replaceAll(' ','_').toLowerCase(), subModule.title.replaceAll(' ','_').toLowerCase(),'','')">
+                        <span class="checkmark"></span>
+                        <span class="title">{{subModule.title != '' ? capitalizeFirstLetterOfEveryWord(subModule.title) : ''}}</span>
+
+                        <button *ngIf="subModule.children && subModule.children.length > 0" type="button" class="collapse-btn" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#module'+subModule.id"
+                                aria-expanded="false" aria-controls="collapseExample">
+                          <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4.43384L0 0.433838H8L4 4.43384Z" fill="#1C1B1F"/>
+                          </svg>
+                        </button>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Recursively call the component if there are children third level -->
+
+                <div *ngIf="subModule.children && subModule.children.length > 0" class="mleft" >
+
+                  <ng-container *ngFor="let subThirdLevelModule of subModule.children; let p = index;">
+
+
+                      <div [formGroupName]="subThirdLevelModule.title.replaceAll(' ','_').toLowerCase()">
+                        <div class="single-module-parent-box mt-3 mleft">
+                          <div class="collapse child-module-list" [id]="'module'+subThirdLevelModule.parent_module_id">
+                            <div class="module-checkbox">
+                              <label class="custom-checkbox d-flex align-items-center">
+                                <input type="checkbox" value="{{subThirdLevelModule.id}}" [formControlName]="subThirdLevelModule.title.replaceAll(' ','_').toLowerCase()" (change)="onCheckboxChange($event, module.title.replaceAll(' ','_').toLowerCase(), subModule.title.replaceAll(' ','_').toLowerCase(),subThirdLevelModule.title.replaceAll(' ','_').toLowerCase(),'')">
+                                <span class="checkmark"></span>
+                                <span class="title">{{subThirdLevelModule.title !== '' ? capitalizeFirstLetterOfEveryWord(subThirdLevelModule.title) : '' }}</span>
+
+                                <button *ngIf="subThirdLevelModule.children && subThirdLevelModule.children.length > 0" type="button" class="collapse-btn" data-bs-toggle="collapse"
+                                        [attr.data-bs-target]="'#module'+subThirdLevelModule.id"
+                                        aria-expanded="false" aria-controls="collapseExample">
+                                  <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 4.43384L0 0.433838H8L4 4.43384Z" fill="#1C1B1F"/>
+                                  </svg>
+                                </button>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Recursively call the component if there are children Fourth level -->
+
+                        <div *ngIf="subThirdLevelModule.children && subThirdLevelModule.children.length > 0" class="mleft" >
+
+                          <ng-container *ngFor="let subFourthLevelModule of subThirdLevelModule.children; let p = index;">
+
+                            <div>
+                              <div [formGroupName]="subFourthLevelModule.title.replaceAll(' ','_').toLowerCase()">
+                                <div class="single-module-parent-box mt-3 mleft">
+                                  <div class="collapse child-module-list" [id]="'module'+subFourthLevelModule.parent_module_id">
+                                    <div class="module-checkbox">
+                                      <label class="custom-checkbox d-flex align-items-center">
+                                        <input type="checkbox" value="{{subFourthLevelModule.id}}" [formControlName]="subFourthLevelModule.title.replaceAll(' ','_').toLowerCase()" (change)="onCheckboxChange($event, module.title.replaceAll(' ','_').toLowerCase(), subModule.title.replaceAll(' ','_').toLowerCase(),subThirdLevelModule.title.replaceAll(' ','_').toLowerCase(),subFourthLevelModule.title.replaceAll(' ','_').toLowerCase())" >
+                                        <span class="checkmark"></span>
+                                        <span class="title">{{subFourthLevelModule.title !== '' ? capitalizeFirstLetterOfEveryWord(subFourthLevelModule.title) : ''}}</span>
+
+                                        <button *ngIf="subFourthLevelModule.children && subFourthLevelModule.children.length > 0" type="button" class="collapse-btn" data-bs-toggle="collapse"
+                                                [attr.data-bs-target]="'#module'+subFourthLevelModule.id"
+                                                aria-expanded="false" aria-controls="collapseExample">
+                                          <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4 4.43384L0 0.433838H8L4 4.43384Z" fill="#1C1B1F"/>
+                                          </svg>
+                                        </button>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </ng-container>
+                        </div>
+                        <!-- End Recursively call the component if there are children Fourth level -->
+
+                      </div>
+
+                  </ng-container>
+                </div>
+                <!-- End Recursively call the component if there are children third level -->
+
+
+              </div>
+
+
+
+
+          </ng-container>
+        </ng-container>
+
+      </div>
+
+    </ng-container>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,433 @@
+img {
+  max-width: 100%;
+}
+
+input[type="number"] {
+  padding-right: 0 !important;
+}
+
+.form-control {
+  border-radius: 3px;
+}
+
+.btn_float {
+  float: right;
+  background: #35A476;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+}
+
+#offcanvasRight {
+  width: 700px;
+}
+
+#nav-tab {
+  display: flex;
+  justify-content: space-between;
+}
+
+#nav-tab button {
+  border: 0;
+  color: rgb(128, 128, 128);
+  width: max-content;
+  font-size: 14px;
+}
+
+#nav-tab button.active {
+  border-bottom: 2px solid #35A476;
+  color: #35A476;
+  font-weight: 500;
+}
+
+#nav-profile #search {
+  border-radius: 0;
+}
+
+#nav-profile .search_div {
+  background: #D4E9FF;
+}
+
+/* Shahrez plan listing css */
+.view-type-box {
+  width: max-content;
+  background: #E7E7F0;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.view-type-box button {
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  padding: 7px 5px;
+  height: max-content;
+  width: max-content;
+  line-height: 0;
+}
+
+.view-type-box button:first-child {
+  margin-right: 3px;
+}
+
+.view-type-box button path,
+.view-type-box button circle,
+.view-type-box button rect {
+  fill: #6E6E6F;
+}
+
+.view-type-box button.active {
+  background: #35A476;
+}
+
+.view-type-box button.active path,
+.view-type-box button.active circle,
+.view-type-box button.active rect {
+  fill: white;
+}
+
+.config-row {
+  background: #DBEDE6;
+  padding: 0 12px 0 0;
+  border-radius: 3px;
+  width: 100%;
+  margin: 20px auto 20px;
+}
+
+.config-row .inactive-active-tab-box {
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 1px solid white;
+}
+
+#inactive-active-tabs button {
+  width: 50%;
+  background: transparent;
+  border: none;
+  padding: 17px 10px;
+  font-size: 14px;
+  color: #35A476;
+  text-transform: uppercase;
+  border-radius: 0;
+}
+
+#inactive-active-tabs button:first-child {
+  border-radius: 3px 0 0 3px;
+}
+
+#inactive-active-tabs button:last-child {
+  border-right: 1px solid white;
+}
+
+#inactive-active-tabs button.active {
+  background: #35A476;
+  color: white;
+  font-weight: 500;
+}
+
+.config-row .form-group {
+  background: white;
+  border-radius: 4px;
+  padding: 7px 10px;
+}
+
+.config-row input {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+}
+
+.config-row input:focus {
+  box-shadow: none;
+}
+
+.config-row .imp-exp-btn {
+  padding: 0;
+  background: transparent;
+  border: none;
+  margin-right: 20px;
+}
+
+.config-row .imp-exp-btn svg path {
+  fill: #35A476;
+}
+
+.config-row .filter-btn,
+.config-row .delete-btn {
+  background: white;
+  border: none;
+  padding: 0px 8px 5px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.config-row .filter-btn {
+  margin-right: 10px;
+}
+
+.config-row .filter-btn .count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #35A476;
+  color: white;
+  font-size: 7px;
+  border-radius: 1000px;
+  border: 1px solid white;
+  padding: 0px 3px;
+}
+
+.config-row .filter-btn svg path,
+.config-row .delete-btn svg path {
+  fill: #35A476;
+}
+.list-table {
+  border: 1px solid #E4E5E7;
+  border-radius: 5px;
+}
+
+.list-table table {
+  width: 100%;
+}
+
+.list-table table tr {
+  border-bottom: 1px solid #E4E5E7;
+}
+
+.list-table table tr th {
+  background: #DBEDE6;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.list-table table tr th:first-child {
+  border-top-left-radius: 4px;
+}
+
+.list-table table tr th:last-child {
+  border-top-right-radius: 4px;
+  width: 120px;
+}
+
+.list-table table tr td {
+  padding: 15px 15px 15px 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.list-table table tr:last-child td:first-child {
+  border-bottom-left-radius: 4px;
+}
+
+.list-table table tr:last-child td:last-child {
+  border-bottom-right-radius: 4px;
+}
+
+.list-table table .count {
+  font-size: 12px;
+  color: white;
+  background: #35A476;
+  padding: 3px 15px;
+  border-radius: 5px;
+  width: max-content;
+  margin: auto;
+}
+
+.list-table table .desc-btn {
+  background: none;
+  padding: 0 0 0 4px;
+  border: none;
+}
+
+.list-table table .desc-btn:focus {
+  box-shadow: none;
+}
+
+.list-table table .desc-btn svg {
+  width: 20px;
+  height: 25px;
+}
+
+.list-table table .desc-btn svg path {
+  fill: #35A476;
+}
+
+.list-table table .status-stat {
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 1000px;
+  width: max-content;
+  display: flex;
+  align-items: center;
+}
+
+.list-table table .published-stat {
+  border: 1px solid #37C560;
+  background: #37c56033;
+}
+
+.list-table table .draft-stat {
+  border: 1px solid #817E7B;
+  background: #DEDEDE;
+}
+
+.list-table table .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 1000px;
+  margin-right: 6px;
+}
+
+.list-table table .green-dot {
+  background: #37C560;
+}
+
+.list-table table .gray-dot {
+  background: #817E7B;
+}
+
+.list-table table .action-btn {
+  border: none;
+  background: transparent;
+  pointer-events: none;
+  padding: 0;
+}
+
+.list-table table .action-btn img {
+  pointer-events: all;
+}
+
+.list-table table .action-btn:focus {
+  box-shadow: none;
+}
+
+.list-table table td {
+  position: relative;
+}
+
+.list-table table .form-switch .form-check-input {
+  height: 1rem;
+  width: 2.2rem;
+  position: absolute;
+  top: 46%;
+  left: 78%;
+  transform: translate(-50%, -50%);
+}
+
+.list-table table .form-switch .form-check-input:checked {
+  background-color: #37C560;
+  border: none;
+}
+
+.list-table table .dropdown-menu, .dropdown-menu {
+  padding: 0;
+  width: 120px;
+  left: -102px !important;
+  top: -2px !important;
+  min-width: max-content;
+  height: max-content;
+}
+
+.list-table table .dropdown-menu::before,
+.list-table table .dropdown-menu::after , .dropdown-menu::before, .dropdown-menu::after{
+  content: '';
+  position: absolute;
+  top: 7px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  z-index: 10;
+}
+
+.list-table table .dropdown-menu::before, .dropdown-menu::before {
+  right: -9px;
+  border-left: 8px solid lightgray;
+}
+
+.list-table table .dropdown-menu::after, .dropdown-menu::after {
+  right: -7px;
+  border-left: 7px solid white;
+}
+
+.list-table table .dropdown ul, .dropdown ul {
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  transform: none!important;
+}
+
+.list-table table .dropdown ul button, .dropdown ul button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.list-table table .dropdown ul button:hover, .dropdown ul button:hover {
+  background: #DBEDE6;
+}
+
+.list-table table .dropdown ul button img, .dropdown ul button img {
+  width: 13px;
+  margin-right: 3px;
+  font-size: 15px;
+}
+
+#offcanvasRight{
+  width: calc(100% - 50%);
+}
+.perm-header{
+  background: #ccc;
+  padding: 5px 0 5px 0;
+  margin-left: -16px;
+}
+.pl{
+  padding-left: 17px
+}
+.inner-row{
+  line-height: 38px;
+  align-content: center;
+  margin-left: -15px;
+}
+.child-row{
+  padding-left: 40px;
+}
+.parentRow{
+  background: #cccccc52;
+  border-bottom: 2px solid white;
+}
+.d-down-svg{
+  width: 15px;
+  height: 15px;
+  margin-top: -3px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.perm-rows td{
+  background: #91A3B04A;
+}
+.perm-rows input{
+  pointer-events: none !important;
+}
+
+
+   .hide {
+     display: none;
+     opacity: 0;
+
+     transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+   }
+
+
+   .show {
+     visibility: visible;
+     opacity: 1;
+
+     transition-delay: 0s;
+   }
